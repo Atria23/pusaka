@@ -9,7 +9,6 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
         foto: null,
     });
 
-
     const fileInputRef = useRef(null);
     const [preview, setPreview] = useState(null);
     const [editing, setEditing] = useState(false);

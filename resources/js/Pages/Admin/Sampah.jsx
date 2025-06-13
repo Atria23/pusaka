@@ -283,7 +283,7 @@ export default function Index({ sampah }) {
                                         </p>
 
                                         <div className="w-max h-max px-2 py-[2px] text-xs text-green-600 rounded-3xl bg-green-50 border border-green-600 flex items-center justify-center">
-                                            Rp{item.harga_per_kg.toLocaleString('id-ID')}
+                                        Rp{Number(item.harga_per_kg).toLocaleString('id-ID')}
                                         </div>
                                     </div>
 
