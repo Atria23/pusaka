@@ -214,8 +214,6 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
                 </div>
             </div>
 
-
-
             {/* Form tambah/edit produk */}
             {formVisible && (
                 <form
@@ -402,7 +400,6 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
             <div className="p-4 grid grid-cols-1 gap-4 mt-12">
                 {paginatedProduk.length > 0 ? (
                     paginatedProduk.map(item => {
-                        const kategori = sampah.find(k => k.id === item.sampah_id);
 
                         return (
                             <div
@@ -422,7 +419,7 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
                                             <div className="text-xs text-gray-500">No Image</div>
                                         )}
                                     </div>
-                                    
+
                                     <div className="flex-1 min-w-0 cursor-pointer" onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}>
                                         <div
                                             className={`font-semibold text-base text-gray-800 ${expandedId === item.id ? 'break-words' : 'line-clamp-3'} max-w-[20vw]`}
@@ -432,12 +429,11 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
                                         </div>
                                         <div
                                             className={`text-sm text-gray-600 ${expandedId === item.id ? 'break-words' : 'line-clamp-2'} max-w-[20vw]`}
-                                            title={kategori?.nama_sampah || '-'}
+                                            title={item.sampah?.nama_sampah || 'Tanpa Kategori'}
                                         >
-                                            {kategori?.nama_sampah || '-'}
+                                            {item.sampah?.nama_sampah || 'Tanpa Kategori'}
                                         </div>
                                     </div>
-
 
                                     {/* Aksi tombol edit dan delete */}
                                     <div className="flex flex-col space-y-1 flex-shrink-0">
@@ -455,10 +451,6 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
                                         </button>
                                     </div>
                                 </div>
-
-                                {/* Baris kedua: (opsional) info tambahan, misal stok atau harga */}
-                                {/* Contoh: */}
-                                {/* <div className="text-sm text-gray-700">Stok: {item.stok}</div> */}
                             </div>
                         );
                     })
@@ -469,68 +461,41 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
 
 
             {/* Pagination */}
-            {/* <div className="flex justify-center gap-2 mb-4">
-                <button
-                    onClick={() => goToPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-3 py-1 border rounded disabled:opacity-50"
-                >
-                    Prev
-                </button>
-                {[...Array(totalPages)].map((_, idx) => (
-                    <button
-                        key={idx + 1}
-                        onClick={() => goToPage(idx + 1)}
-                        className={`px-3 py-1 border rounded ${currentPage === idx + 1 ? 'bg-blue-600 text-white' : ''
-                            }`}
-                    >
-                        {idx + 1}
-                    </button>
-                ))}
-                <button
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-3 py-1 border rounded disabled:opacity-50"
-                >
-                    Next
-                </button>
-            </div> */}
             {totalPages > 1 && (
-  <div className="flex justify-center space-x-2 pb-8">
-    <button
-      onClick={() => goToPage(currentPage - 1)}
-      disabled={currentPage === 1}
-      className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
-    >
-      Prev
-    </button>
+                <div className="flex justify-center space-x-2 pb-8">
+                    <button
+                        onClick={() => goToPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                    >
+                        Prev
+                    </button>
 
-    {[...Array(totalPages).keys()].map((_, i) => {
-      const pageNum = i + 1;
-      return (
-        <button
-          key={pageNum}
-          onClick={() => goToPage(pageNum)}
-          className={`px-3 py-1 rounded border ${
-            currentPage === pageNum
-              ? 'bg-main text-white border-main'
-              : 'border-gray-300'
-          }`}
-        >
-          {pageNum}
-        </button>
-      );
-    })}
+                    {[...Array(totalPages).keys()].map((_, i) => {
+                        const pageNum = i + 1;
+                        return (
+                            <button
+                                key={pageNum}
+                                onClick={() => goToPage(pageNum)}
+                                className={`px-3 py-1 rounded border ${currentPage === pageNum
+                                    ? 'bg-main text-white border-main'
+                                    : 'border-gray-300'
+                                    }`}
+                            >
+                                {pageNum}
+                            </button>
+                        );
+                    })}
 
-    <button
-      onClick={() => goToPage(currentPage + 1)}
-      disabled={currentPage === totalPages}
-      className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
-    >
-      Next
-    </button>
-  </div>
-)}
+                    <button
+                        onClick={() => goToPage(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
 
         </div>
     );
