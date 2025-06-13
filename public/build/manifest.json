@@ -1,0 +1,340 @@
+{
+  "_SidebarDrawer-DxSi_lr1.js": {
+    "file": "assets/SidebarDrawer-DxSi_lr1.js",
+    "name": "SidebarDrawer",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_index-BG1o6taF.js": {
+    "file": "assets/index-BG1o6taF.js",
+    "name": "index",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/About.jsx": {
+    "file": "assets/About-C0-HpeVD.js",
+    "name": "About",
+    "src": "resources/js/Pages/About.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/AccountSettings.jsx": {
+    "file": "assets/AccountSettings-Cgog6-KA.js",
+    "name": "AccountSettings",
+    "src": "resources/js/Pages/AccountSettings.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin.jsx": {
+    "file": "assets/Admin-CbBp4j7s.js",
+    "name": "Admin",
+    "src": "resources/js/Pages/Admin.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/Dashboard.jsx": {
+    "file": "assets/Dashboard-B3aNgywm.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/Admin/Dashboard.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/LaporanAdmin.jsx": {
+    "file": "assets/LaporanAdmin-D5bysmJz.js",
+    "name": "LaporanAdmin",
+    "src": "resources/js/Pages/Admin/LaporanAdmin.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/LaporanPengguna.jsx": {
+    "file": "assets/LaporanPengguna-DWVyZoNR.js",
+    "name": "LaporanPengguna",
+    "src": "resources/js/Pages/Admin/LaporanPengguna.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/ManageUserView.jsx": {
+    "file": "assets/ManageUserView-BKKrCchI.js",
+    "name": "ManageUserView",
+    "src": "resources/js/Pages/Admin/ManageUserView.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/Penukaran.jsx": {
+    "file": "assets/Penukaran-LqCtKK4g.js",
+    "name": "Penukaran",
+    "src": "resources/js/Pages/Admin/Penukaran.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-BG1o6taF.js"
+    ]
+  },
+  "resources/js/Pages/Admin/ProdukOlahan.jsx": {
+    "file": "assets/ProdukOlahan-DQ4B6e3F.js",
+    "name": "ProdukOlahan",
+    "src": "resources/js/Pages/Admin/ProdukOlahan.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-BG1o6taF.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Sampah.jsx": {
+    "file": "assets/Sampah-CJb0apXr.js",
+    "name": "Sampah",
+    "src": "resources/js/Pages/Admin/Sampah.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-BG1o6taF.js"
+    ]
+  },
+  "resources/js/Pages/Admin/Setoran.jsx": {
+    "file": "assets/Setoran-Cnm-QIgW.js",
+    "name": "Setoran",
+    "src": "resources/js/Pages/Admin/Setoran.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Admin/Vouchers.jsx": {
+    "file": "assets/Vouchers-B4MFzy_R.js",
+    "name": "Vouchers",
+    "src": "resources/js/Pages/Admin/Vouchers.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-BG1o6taF.js"
+    ]
+  },
+  "resources/js/Pages/Auth/ForgotPassword.jsx": {
+    "file": "assets/ForgotPassword-B0_-QKZN.js",
+    "name": "ForgotPassword",
+    "src": "resources/js/Pages/Auth/ForgotPassword.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/Login.jsx": {
+    "file": "assets/Login-B5jVNrgb.js",
+    "name": "Login",
+    "src": "resources/js/Pages/Auth/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/Register.jsx": {
+    "file": "assets/Register-DizoypKO.js",
+    "name": "Register",
+    "src": "resources/js/Pages/Auth/Register.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/ResetPassword.jsx": {
+    "file": "assets/ResetPassword-CajpmEj8.js",
+    "name": "ResetPassword",
+    "src": "resources/js/Pages/Auth/ResetPassword.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/ResetPasswordSuccess.jsx": {
+    "file": "assets/ResetPasswordSuccess-H2qgjj-c.js",
+    "name": "ResetPasswordSuccess",
+    "src": "resources/js/Pages/Auth/ResetPasswordSuccess.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Auth/VerifyEmail.jsx": {
+    "file": "assets/VerifyEmail-DRrd6Alq.js",
+    "name": "VerifyEmail",
+    "src": "resources/js/Pages/Auth/VerifyEmail.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Dashboard.jsx": {
+    "file": "assets/Dashboard-Csdsvaky.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/Dashboard.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/ManageUserDetail.jsx": {
+    "file": "assets/ManageUserDetail-CvcvYv9S.js",
+    "name": "ManageUserDetail",
+    "src": "resources/js/Pages/ManageUserDetail.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/ManageUsers.jsx": {
+    "file": "assets/ManageUsers-DJ5POMyM.js",
+    "name": "ManageUsers",
+    "src": "resources/js/Pages/ManageUsers.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/PrivacyPolicy.jsx": {
+    "file": "assets/PrivacyPolicy-zXYNFxKq.js",
+    "name": "PrivacyPolicy",
+    "src": "resources/js/Pages/PrivacyPolicy.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/User/Dashboard.jsx": {
+    "file": "assets/Dashboard-CmAWZgWI.js",
+    "name": "Dashboard",
+    "src": "resources/js/Pages/User/Dashboard.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/GaleriProduk.jsx": {
+    "file": "assets/GaleriProduk-tfzd-kU4.js",
+    "name": "GaleriProduk",
+    "src": "resources/js/Pages/User/GaleriProduk.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/Penukaran.jsx": {
+    "file": "assets/Penukaran-DxwtoP3E.js",
+    "name": "Penukaran",
+    "src": "resources/js/Pages/User/Penukaran.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/Profile.jsx": {
+    "file": "assets/Profile-DcTsikYn.js",
+    "name": "Profile",
+    "src": "resources/js/Pages/User/Profile.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/RiwayatSetoran.jsx": {
+    "file": "assets/RiwayatSetoran-sMrVVTbz.js",
+    "name": "RiwayatSetoran",
+    "src": "resources/js/Pages/User/RiwayatSetoran.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/SetoranSampah.jsx": {
+    "file": "assets/SetoranSampah-BKT2V6YX.js",
+    "name": "SetoranSampah",
+    "src": "resources/js/Pages/User/SetoranSampah.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/User/Voucher.jsx": {
+    "file": "assets/Voucher-qIdAbjsC.js",
+    "name": "Voucher",
+    "src": "resources/js/Pages/User/Voucher.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-BG1o6taF.js",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/Pages/Welcome.jsx": {
+    "file": "assets/Welcome-D7Dt_UUk.js",
+    "name": "Welcome",
+    "src": "resources/js/Pages/Welcome.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_SidebarDrawer-DxSi_lr1.js"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-BAdv0NTI.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/About.jsx",
+      "resources/js/Pages/AccountSettings.jsx",
+      "resources/js/Pages/Admin.jsx",
+      "resources/js/Pages/Admin/Dashboard.jsx",
+      "resources/js/Pages/Admin/LaporanAdmin.jsx",
+      "resources/js/Pages/Admin/LaporanPengguna.jsx",
+      "resources/js/Pages/Admin/ManageUserView.jsx",
+      "resources/js/Pages/Admin/Penukaran.jsx",
+      "resources/js/Pages/Admin/ProdukOlahan.jsx",
+      "resources/js/Pages/Admin/Sampah.jsx",
+      "resources/js/Pages/Admin/Setoran.jsx",
+      "resources/js/Pages/Admin/Vouchers.jsx",
+      "resources/js/Pages/Auth/ForgotPassword.jsx",
+      "resources/js/Pages/Auth/Login.jsx",
+      "resources/js/Pages/Auth/Register.jsx",
+      "resources/js/Pages/Auth/ResetPassword.jsx",
+      "resources/js/Pages/Auth/ResetPasswordSuccess.jsx",
+      "resources/js/Pages/Auth/VerifyEmail.jsx",
+      "resources/js/Pages/Dashboard.jsx",
+      "resources/js/Pages/ManageUserDetail.jsx",
+      "resources/js/Pages/ManageUsers.jsx",
+      "resources/js/Pages/PrivacyPolicy.jsx",
+      "resources/js/Pages/User/Dashboard.jsx",
+      "resources/js/Pages/User/GaleriProduk.jsx",
+      "resources/js/Pages/User/Penukaran.jsx",
+      "resources/js/Pages/User/Profile.jsx",
+      "resources/js/Pages/User/RiwayatSetoran.jsx",
+      "resources/js/Pages/User/SetoranSampah.jsx",
+      "resources/js/Pages/User/Voucher.jsx",
+      "resources/js/Pages/Welcome.jsx"
+    ],
+    "css": [
+      "assets/app-BlxRgD-M.css"
+    ]
+  }
+}
