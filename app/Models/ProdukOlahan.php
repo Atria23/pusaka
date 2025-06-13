@@ -15,6 +15,7 @@ class ProdukOlahan extends Model
 
     public function sampah()
     {
-        return $this->belongsTo(Sampah::class);
+        return $this->belongsTo(Sampah::class, 'sampah_id');
     }
+
 }

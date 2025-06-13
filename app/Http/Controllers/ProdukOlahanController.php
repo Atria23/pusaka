@@ -22,18 +22,30 @@ public function index()
 }
 
 
-    // Index untuk user
-    public function indexUser()
-    {
-        $produkOlahan = ProdukOlahan::with('sampah')->get();
-        $sampah = Sampah::select('id', 'nama_sampah')->get();
+    // // Index untuk user
+    // public function indexUser()
+    // {
+    //     $produkOlahan = ProdukOlahan::with('sampah')->get();
+    //     $sampah = Sampah::select('id', 'nama_sampah')->get();
 
-        return Inertia::render('User/GaleriProduk', [
-            'produkOlahan' => $produkOlahan,
-            'kategoriSampah' => Sampah::all(),
-        ]);
+    //     return Inertia::render('User/GaleriProduk', [
+    //         'produkOlahan' => $produkOlahan,
+    //         'kategoriSampah' => Sampah::all(),
+    //     ]);
         
-    }
+    // }
+
+    public function indexUser()
+{
+    $produkOlahan = ProdukOlahan::with('sampah')->get();
+    $kategoriSampah = Sampah::select('id', 'nama_sampah')->get();
+
+    return Inertia::render('User/GaleriProduk', [
+        'produkOlahan' => $produkOlahan,
+        'kategoriSampah' => $kategoriSampah,
+    ]);
+}
+
     public function store(Request $request)
     {
         $data = $request->validate([

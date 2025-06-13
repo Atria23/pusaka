@@ -135,27 +135,32 @@ export default function GaleriProduk({ produkOlahan }) {
             {/* PRODUK LIST */}
             <div className="px-4 pb-8 space-y-4">
                 {paginatedProduk.length === 0 ? (
-                    <div className="text-center text-gray-600 mt-10">Tidak ada produk ditemukan.</div>
+                    <div className="text-center text-gray-600 mt-10">
+                        Tidak ada produk ditemukan.
+                    </div>
                 ) : (
                     paginatedProduk.map(item => {
-                        
-                        const kategori = kategoriSampah.find(k => k.id == item.sampah_id);
                         const isExpanded = expandedId === item.id;
 
-                        // Contoh status dummy (ganti sesuai data kamu kalau ada)
                         const status = item.status || 'tersedia';
 
                         return (
-                            <div key={item.id} className="rounded-lg overflow-hidden shadow-md bg-white">
+                            <div
+                                key={item.id}
+                                className="rounded-lg overflow-hidden shadow-md bg-white"
+                            >
                                 <div className="relative">
                                     <img
-                                        src={item.foto ? `/storage/${item.foto}` : '/storage/logo_no_bg.png'}
+                                        src={
+                                            item.foto ? `/storage/${item.foto}` : '/storage/logo_no_bg.png'
+                                        }
                                         alt={item.nama_produk}
                                         className="w-full h-48 object-cover"
                                     />
-                                    {/* Badge Kategori (kiri atas) */}
+
+                                    {/* Badge Kategori (via relasi item.sampah.nama_sampah) */}
                                     <div className="absolute top-3 left-3 bg-main text-white text-xs font-semibold py-1 px-3 rounded">
-                                        {kategori?.nama_sampah || 'Tanpa Kategori'}
+                                        {item.sampah?.nama_sampah || 'Tanpa Kategori'}
                                     </div>
                                 </div>
 
@@ -169,6 +174,7 @@ export default function GaleriProduk({ produkOlahan }) {
                                     >
                                         {item.nama_produk}
                                     </h5>
+
                                     <p
                                         className={`text-gray-700 text-sm mb-2 ${isExpanded ? 'break-words line-clamp-none' : 'line-clamp-2'
                                             }`}
