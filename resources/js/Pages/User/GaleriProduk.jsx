@@ -1,13 +1,15 @@
 import SidebarDrawer from '@/Components/SidebarDrawer';
+import { usePage } from '@inertiajs/react';
 import React, { useMemo, useState } from 'react';
 
-export default function GaleriProduk({ produkOlahan, kategoriSampah }) {
+export default function GaleriProduk({ produkOlahan }) {
     const [search, setSearch] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [filterKategori, setFilterKategori] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [expandedId, setExpandedId] = useState(null);
     const itemsPerPage = 8;
+    const { kategoriSampah } = usePage().props;
 
     const filteredSortedProduk = useMemo(() => {
         let data = [...produkOlahan];
@@ -136,7 +138,8 @@ export default function GaleriProduk({ produkOlahan, kategoriSampah }) {
                     <div className="text-center text-gray-600 mt-10">Tidak ada produk ditemukan.</div>
                 ) : (
                     paginatedProduk.map(item => {
-                        const kategori = kategoriSampah.find(k => k.id === item.sampah_id);
+                        
+                        const kategori = kategoriSampah.find(k => k.id == item.sampah_id);
                         const isExpanded = expandedId === item.id;
 
                         // Contoh status dummy (ganti sesuai data kamu kalau ada)
