@@ -22,7 +22,7 @@ export default function GaleriProduk({ produkOlahan }) {
         }
 
         if (filterKategori !== '') {
-            data = data.filter(p => p.sampah_id === parseInt(filterKategori));
+            data = data.filter(p => p.sampah?.nama_sampah === filterKategori);
         }
 
         data.sort((a, b) => {
@@ -35,6 +35,7 @@ export default function GaleriProduk({ produkOlahan }) {
 
         return data;
     }, [produkOlahan, search, sortOrder, filterKategori]);
+
 
 
     const totalPages = Math.ceil(filteredSortedProduk.length / itemsPerPage);
@@ -123,9 +124,10 @@ export default function GaleriProduk({ produkOlahan }) {
                     >
                         <option value="">Semua Kategori</option>
                         {kategoriSampah.map(k => (
-                            <option key={k.id} value={k.id}>{k.nama_sampah}</option>
+                            <option key={k.id} value={k.nama_sampah}>{k.nama_sampah}</option>
                         ))}
                     </select>
+
                 </div>
             </div>
 

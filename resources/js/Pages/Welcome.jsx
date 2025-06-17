@@ -63,14 +63,15 @@ export default function Welcome(props) {
                         <div className="flex flex-col w-full items-start justify-center">
                             <div className="flex flex-col justify-center gap-[50px] px-[30px] py-8 w-full bg-neutralsilver items-center">
                                 <div className="flex flex-col items-start gap-5 w-full max-w-[100%]">
-                                    <div className="w-full font-semibold text-[#a8d5ba] text-3xl text-center leading-[45px]">
-                                        <span className="font-semibold text-3xl leading-[48px] text-main block mt-1">
+                                    <div className="w-full text-center py-6">
+                                        <h1 className="text-main text-2xl md:text-4xl font-semibold leading-snug">
                                             Selamat Datang Di
-                                        </span>
-                                        <span className="font-bold text-main text-4xl leading-[24px] block">
+                                        </h1>
+                                        <h2 className="text-main text-3xl md:text-5xl font-bold leading-tight mt-2">
                                             Bank Sampah Digital
-                                        </span>
+                                        </h2>
                                     </div>
+
 
                                     <div className="w-full text-[#333333] text-md text-center leading-snug">
                                         Pusaka hadir sebagai solusi inovatif untuk mengelola sampah dengan lebih mudah dan mengubahnya menjadi nilai ekonomi.
