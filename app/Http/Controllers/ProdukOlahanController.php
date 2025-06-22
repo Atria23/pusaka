@@ -33,42 +33,82 @@ public function index()
         ]);
     }
 
+    // public function store(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'nama_produk' => 'required|string|max:100',
+    //         'sampah_id' => 'required|exists:sampah,id',
+    //         'foto' => 'nullable|image|max:2048',
+    //     ]);
+    
+    //     if ($request->hasFile('foto')) {
+    //         $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
+    //     }
+    
+    //     ProdukOlahan::create($data);
+    
+    //     return back()->with('message', 'Produk berhasil ditambahkan.');
+    // }
+    
+    // public function update(Request $request, ProdukOlahan $produkOlahan)
+    // {
+    //     $data = $request->validate([
+    //         'nama_produk' => 'required|string|max:100',
+    //         'sampah_id' => 'required|exists:sampah,id',
+    //         'foto' => 'nullable|image|max:2048',
+    //     ]);
+    
+    //     if ($request->hasFile('foto')) {
+    //         if ($produkOlahan->foto && \Storage::disk('public')->exists($produkOlahan->foto)) {
+    //             \Storage::disk('public')->delete($produkOlahan->foto);
+    //         }
+    //         $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
+    //     }
+    
+    //     $produkOlahan->update($data);
+    
+    //     return back()->with('message', 'Produk berhasil diperbarui.');
+    // }
+
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'nama_produk' => 'required|string|max:100',
-            'sampah_id' => 'required|exists:sampah,id',
-            'foto' => 'nullable|image|max:2048',
-        ]);
-    
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
-        }
-    
-        ProdukOlahan::create($data);
-    
-        return back()->with('message', 'Produk berhasil ditambahkan.');
+{
+    $data = $request->validate([
+        'nama_produk' => 'required|string|max:100',
+        'sampah_id' => 'required|exists:sampah,id',
+        'foto' => 'nullable|image|max:2048',
+        'link_pembelian' => 'nullable|url|max:255',
+    ]);
+
+    if ($request->hasFile('foto')) {
+        $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
     }
-    
-    public function update(Request $request, ProdukOlahan $produkOlahan)
-    {
-        $data = $request->validate([
-            'nama_produk' => 'required|string|max:100',
-            'sampah_id' => 'required|exists:sampah,id',
-            'foto' => 'nullable|image|max:2048',
-        ]);
-    
-        if ($request->hasFile('foto')) {
-            if ($produkOlahan->foto && \Storage::disk('public')->exists($produkOlahan->foto)) {
-                \Storage::disk('public')->delete($produkOlahan->foto);
-            }
-            $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
+
+    ProdukOlahan::create($data);
+
+    return back()->with('message', 'Produk berhasil ditambahkan.');
+}
+
+public function update(Request $request, ProdukOlahan $produkOlahan)
+{
+    $data = $request->validate([
+        'nama_produk' => 'required|string|max:100',
+        'sampah_id' => 'required|exists:sampah,id',
+        'foto' => 'nullable|image|max:2048',
+        'link_pembelian' => 'nullable|url|max:255',
+    ]);
+
+    if ($request->hasFile('foto')) {
+        if ($produkOlahan->foto && \Storage::disk('public')->exists($produkOlahan->foto)) {
+            \Storage::disk('public')->delete($produkOlahan->foto);
         }
-    
-        $produkOlahan->update($data);
-    
-        return back()->with('message', 'Produk berhasil diperbarui.');
+        $data['foto'] = $request->file('foto')->store('produk_olahan', 'public');
     }
+
+    $produkOlahan->update($data);
+
+    return back()->with('message', 'Produk berhasil diperbarui.');
+}
+
     
 public function destroy(ProdukOlahan $produkOlahan)
 {

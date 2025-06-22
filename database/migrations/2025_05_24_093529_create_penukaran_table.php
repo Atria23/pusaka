@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('penukaran', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // ID acak UUID
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('voucher_id')->constrained('vouchers')->cascadeOnDelete();
             $table->integer('poin_dipakai');
             $table->timestamp('tanggal')->useCurrent();
-            $table->enum('status', ['belum diredeem', 'sudah diredeem'])->default('belum diredeem'); // Status penukaran
+            $table->enum('status', ['belum diredeem', 'sudah diredeem'])->default('belum diredeem');
             $table->timestamps();
         });
     }

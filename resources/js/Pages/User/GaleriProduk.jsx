@@ -184,7 +184,24 @@ export default function GaleriProduk({ produkOlahan }) {
                                         {item.deskripsi || 'Tidak ada deskripsi.'}
                                     </p>
 
-                                    <div className="flex justify-between items-center text-sm text-gray-600 border-t pt-2 mt-2">
+                                    <hr className="border-t border-gray-200 my-2" />
+
+                                    <div className="flex justify-between items-center text-sm text-gray-600 py-2">
+                                        <div>
+                                            {item.link_pembelian?.trim() && (
+                                                <a
+                                                    href={item.link_pembelian}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center bg-green-500 text-white px-3 py-2 rounded-full text-xs font-semibold hover:bg-green-600 transition"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mr-2" viewBox="0 0 16 16">
+                                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                    </svg>
+                                                    Beli Sekarang
+                                                </a>
+                                            )}
+                                        </div>
                                         <div className="text-sm text-gray-500">
                                             {new Date(item.created_at).toLocaleString('id-ID', {
                                                 day: 'numeric',
@@ -195,6 +212,8 @@ export default function GaleriProduk({ produkOlahan }) {
                                             })}
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         );

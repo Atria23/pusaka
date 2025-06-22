@@ -6,13 +6,13 @@ export default function Edit() {
 
     const { data, setData, post, errors } = useForm({
         name: user.name || '',
-        username: user.username || '',
         email: user.email || '',
+        rt: user.rt || '',
+        rw: user.rw || '',
+        alamat: user.alamat || '',
+        kontak: user.kontak || '',
         password: '',
         password_confirmation: '',
-        balance: user.balance || '',
-        phone_number: user.phone_number || '',
-        points: user.points || '',
         selectedRoles: user.roles.map(role => role.name),
         _method: 'PUT',
     });
@@ -26,13 +26,9 @@ export default function Edit() {
         <>
             <Head title="Manage User Detail" />
             <div className="mx-auto w-full max-w-[500px] min-h-screen text-white">
-                {/* Header */}
                 <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
                     <div className="flex items-center space-x-4 px-4 py-2 text-white">
-                        <button
-                            onClick={() => window.history.back()}
-                            className="w-6 h-6"
-                        >
+                        <button onClick={() => window.history.back()} className="w-6 h-6">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">
                                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
                             </svg>
@@ -41,10 +37,8 @@ export default function Edit() {
                     </div>
                 </div>
 
-                {/* Form */}
                 <div className="pt-[60px] pb-8 px-4 bg-white">
                     <form onSubmit={updateUser} className="space-y-5">
-                        {/* Nama */}
                         <div>
                             <label className="w-full text-gray-700">Nama Pengguna</label>
                             <input
@@ -57,124 +51,80 @@ export default function Edit() {
                         </div>
 
                         <div>
-                            <label className="w-full text-gray-700">Username</label>
+                            <label className="w-full text-gray-700">Email</label>
                             <input
-                                type="text"
+                                type="email"
                                 className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={data.username}
-                                onChange={e => setData('username', e.target.value)}
+                                value={data.email}
+                                onChange={e => setData('email', e.target.value)}
                             />
-                            {errors.username && <p className="text-xs text-red-400 mt-1">{errors.name}</p>}
-                        </div>
-
-                        {/* Email + Verifikasi */}
-                        <div>
-                            <label className="w-full text-gray-700">Email Pengguna</label>
-                            <div className="relative">
-                                <input
-                                    type="email"
-                                    className="w-full px-3 py-2 pr-10 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                    value={data.email}
-                                    onChange={e => setData('email', e.target.value)}
-                                />
-                                {user.email_verified_at ? (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="16"
-                                        height="16"
-                                        fill="green"
-                                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                                        viewBox="0 0 16 16"
-                                        title="Terverifikasi"
-                                    >
-                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 
-                                                0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 
-                                                0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 
-                                                0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                    </svg>
-                                ) : (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="16"
-                                        height="16"
-                                        fill="#facc15"
-                                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                                        viewBox="0 0 16 16"
-                                        title="Belum Verifikasi"
-                                    >
-                                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 
-                                                0L.165 13.233c-.457.778.091 1.767.98 
-                                                1.767h13.713c.889 0 1.438-.99.98-1.767zM8 
-                                                5c.535 0 .954.462.9.995l-.35 3.507a.552.552 
-                                                0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 
-                                                5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                    </svg>
-                                )}
-                            </div>
                             {errors.email && <p className="text-xs text-red-400 mt-1">{errors.email}</p>}
                         </div>
 
-                        {/* Nomor HP */}
                         <div>
-                            <label className="w-full text-gray-700">Nomor HP</label>
+                            <label className="w-full text-gray-700">RT</label>
                             <input
                                 type="text"
-                                inputMode="numeric"
-                                pattern="[0-9]*"
                                 className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={data.phone_number}
+                                value={data.rt}
                                 onChange={(e) => {
-                                    const onlyNumbers = e.target.value.replace(/\D/g, ''); // Hapus semua non-digit
-                                    setData('phone_number', onlyNumbers);
+                                    let val = e.target.value;
+
+                                    // Hanya angka, maksimal 2 digit
+                                    if (/^\d{0,2}$/.test(val)) {
+                                        // Tolak hanya "0"
+                                        if (val === '0') return;
+
+                                        setData('rt', val);
+                                    }
                                 }}
                             />
-                            {errors.phone_number && (
-                                <p className="text-xs text-red-400 mt-1">{errors.phone_number}</p>
-                            )}
+                            {errors.rt && <p className="text-xs text-red-400 mt-1">{errors.rt}</p>}
                         </div>
 
-                        {/* Points */}
                         <div>
-                            <label className="w-full text-gray-700">Points</label>
+                            <label className="w-full text-gray-700">RW</label>
                             <input
                                 type="text"
-                                inputMode="numeric"
                                 className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={data.points !== null ? Number(data.points).toLocaleString('id-ID') : ''}
-                                onChange={e => {
-                                    const raw = e.target.value.replace(/\D/g, ''); // hanya angka
-                                    setData('points', raw); // jangan pakai Number biar fleksibel dan tidak NaN saat kosong
-                                }}
-                            />
-                            {errors.points && <p className="text-xs text-red-400 mt-1">{errors.points}</p>}
-                        </div>
-
-
-                        {/* Saldo */}
-                        <div>
-                            <label className="w-full text-gray-700">Saldo</label>
-                            <input
-                                type="text"
-                                inputMode="numeric"
-                                className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={
-                                    data.balance
-                                        ? `Rp${Number(data.balance).toLocaleString('id-ID', {
-                                            minimumFractionDigits: 0,
-                                            maximumFractionDigits: 0,
-                                        })}`
-                                        : ''
-                                }
+                                value={data.rw}
                                 onChange={(e) => {
-                                    const raw = e.target.value.replace(/\D/g, ''); // Hilangkan semua non-digit
-                                    setData('balance', raw ? parseInt(raw) : '');
+                                    let val = e.target.value;
+
+                                    // Hanya angka, maksimal 2 digit
+                                    if (/^\d{0,2}$/.test(val)) {
+                                        // Tolak hanya "0"
+                                        if (val === '0') return;
+
+                                        setData('rw', val);
+                                    }
                                 }}
                             />
-                            {errors.balance && <p className="text-xs text-red-400 mt-1">{errors.balance}</p>}
+                            {errors.rw && <p className="text-xs text-red-400 mt-1">{errors.rw}</p>}
                         </div>
 
+                        <div>
+                            <label className="w-full text-gray-700">Alamat</label>
+                            <input
+                                type="text"
+                                className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
+                                value={data.alamat}
+                                onChange={e => setData('alamat', e.target.value)}
+                            />
+                            {errors.alamat && <p className="text-xs text-red-400 mt-1">{errors.alamat}</p>}
+                        </div>
 
-                        {/* Password */}
+                        <div>
+                            <label className="w-full text-gray-700">Kontak</label>
+                            <input
+                                type="text"
+                                className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
+                                value={data.kontak}
+                                onChange={e => setData('kontak', e.target.value)}
+                            />
+                            {errors.kontak && <p className="text-xs text-red-400 mt-1">{errors.kontak}</p>}
+                        </div>
+
                         <div>
                             <label className="w-full text-gray-700">Kata Sandi Baru</label>
                             <input
@@ -186,7 +136,6 @@ export default function Edit() {
                             {errors.password && <p className="text-xs text-red-400 mt-1">{errors.password}</p>}
                         </div>
 
-                        {/* Konfirmasi */}
                         <div>
                             <label className="w-full text-gray-700">Konfirmasi Kata Sandi</label>
                             <input
@@ -198,7 +147,6 @@ export default function Edit() {
                             {errors.password_confirmation && <p className="text-xs text-red-400 mt-1">{errors.password_confirmation}</p>}
                         </div>
 
-                        {/* Akses Role */}
                         <div>
                             <label className="w-full text-gray-700 mb-1">Akses Grup</label>
                             <div className="flex flex-wrap gap-3">
@@ -207,11 +155,15 @@ export default function Edit() {
                                         <input
                                             type="checkbox"
                                             value={role.name}
-                                            checked={data.selectedRoles[0] === role.name}
+                                            checked={data.selectedRoles.includes(role.name)}
                                             onChange={(e) => {
-                                                setData('selectedRoles', [e.target.value]);
+                                                if (e.target.checked) {
+                                                    setData('selectedRoles', [...data.selectedRoles, e.target.value]);
+                                                } else {
+                                                    setData('selectedRoles', data.selectedRoles.filter(r => r !== e.target.value));
+                                                }
                                             }}
-                                            className="w-4 h-4 text-main border-gray-300 rounded focus:ring-blue-500"
+                                            className="w-4 h-4 text-main border-gray-300 rounded focus:ring-main_light"
                                         />
                                         <span className="ml-2 text-gray-700 text-sm">{role.name}</span>
                                     </label>
@@ -220,11 +172,7 @@ export default function Edit() {
                             {errors.selectedRoles && <p className="text-xs text-red-400 mt-1">{errors.selectedRoles}</p>}
                         </div>
 
-                        {/* Tombol Simpan */}
-                        <button
-                            type="submit"
-                            className="w-full py-3 rounded-lg px-4 text-white bg-main hover:bg-blue-700"
-                        >
+                        <button type="submit" className="w-full py-3 rounded-lg px-4 text-white bg-main hover:bg-main_dark">
                             Simpan Perubahan
                         </button>
                     </form>

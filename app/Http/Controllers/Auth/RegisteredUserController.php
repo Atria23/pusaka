@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\User\Affiliator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,7 +30,6 @@ class RegisteredUserController extends Controller
         'name' => 'required|string|max:255',
         'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        'referral_code' => 'nullable|exists:affiliators,referral_code'
     ]);
 
     $rt = $request->rt;
@@ -58,17 +56,6 @@ class RegisteredUserController extends Controller
 
     // Assign role 'user'
     $user->assignRole('user');
-
-    // Jika user isi kode referral, daftarkan juga sebagai affiliator
-    if ($request->filled('referral_code')) {
-        $parent = Affiliator::where('referral_code', $request->referral_code)->first();
-
-        $affiliator = new Affiliator();
-        $affiliator->user_id = $user->id;
-        $affiliator->referral_code = null; // Bisa digenerate jika perlu
-        $affiliator->affiliate_by = $parent?->id;
-        $affiliator->save();
-    }
 
     try {
         event(new Registered($user));

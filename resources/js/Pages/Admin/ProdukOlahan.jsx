@@ -7,6 +7,7 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
         nama_produk: '',
         sampah_id: '',
         foto: null,
+        link_pembelian: '',
     });
 
     const fileInputRef = useRef(null);
@@ -33,6 +34,7 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
             nama_produk: item.nama_produk,
             sampah_id: item.sampah_id,
             foto: null,
+            link_pembelian: item.link_pembelian || '',
         });
         setPreview(item.foto ? `/storage/${item.foto}` : null);
         setEditing(true);
@@ -66,8 +68,18 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
             setDropdownVisibleKategori(true);
             setForm((prev) => ({ ...prev, sampah_id: '' })); // reset sampah_id saat ketik ulang kategori
         } else {
-            setForm((prev) => ({ ...prev, [name]: value }));
+            let newValue = value;
+
+            if (name === 'link_pembelian') {
+                // Jika user mengetik, tambahkan https:// jika belum ada http/https di awal
+                if (newValue && !/^https?:\/\//i.test(newValue)) {
+                    newValue = 'https://' + newValue;
+                }
+            }
+
+            setForm((prev) => ({ ...prev, [name]: newValue }));
         }
+
     };
 
     const handleSubmit = (e) => {
@@ -80,6 +92,7 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
         const formData = new FormData();
         formData.append('nama_produk', form.nama_produk);
         formData.append('sampah_id', form.sampah_id);
+        formData.append('link_pembelian', form.link_pembelian || '');
 
         if (form.foto instanceof File) {
             formData.append('foto', form.foto);
@@ -293,6 +306,20 @@ export default function ProdukOlahan({ produkOlahan, sampah }) {
                                 className="mb-3 mx-auto max-h-48 object-contain rounded"
                             />
                         )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Link Pembelian (opsional)
+                        </label>
+                        <input
+                            type="url"
+                            name="link_pembelian"
+                            value={form.link_pembelian}
+                            onChange={handleChange}
+                            className="input w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-main bg-white"
+                            placeholder="https://"
+                        />
                     </div>
 
                     {/* Buttons */}

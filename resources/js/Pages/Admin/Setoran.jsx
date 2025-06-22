@@ -266,7 +266,7 @@ export default function AdminSetoranIndex() {
                                 setSearchUser(e.target.value);
                                 setDropdownVisibleUser(true);
                                 const selected = users.find(u =>
-                                    `${u.name}_${u.rt}_${u.rw}_${u.telpon}`.toLowerCase() === e.target.value.toLowerCase() ||
+                                    `${u.name}_${u.rt}_${u.rw}_${u.kontak}`.toLowerCase() === e.target.value.toLowerCase() ||
                                     u.name.toLowerCase() === e.target.value.toLowerCase()
                                 );
                                 setData('user_id', selected ? selected.id : '');
@@ -285,7 +285,7 @@ export default function AdminSetoranIndex() {
                                     <div
                                         key={user.id}
                                         onClick={() => {
-                                            const label = `${user.name} (RT ${user.rt}/RW ${user.rw}) - ${user.telpon}`;
+                                            const label = `${user.name} (RT ${user.rt}/RW ${user.rw}) - ${user.kontak}`;
                                             setSearchUser(label);
                                             setData('user_id', user.id);
                                             setIsUserSelected(true);
@@ -293,7 +293,7 @@ export default function AdminSetoranIndex() {
                                         }}
                                         className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
                                     >
-                                        {user.name} (RT {user.rt} / RW {user.rw}) - {user.telpon}
+                                        {user.name} (RT {user.rt} / RW {user.rw}) - {user.kontak}
                                     </div>
                                 ))}
                             </div>

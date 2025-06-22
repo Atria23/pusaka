@@ -11,11 +11,15 @@ class ProdukOlahan extends Model
 
     protected $table = 'produk_olahan';
 
-    protected $fillable = ['nama_produk', 'sampah_id', 'foto'];
+    protected $fillable = [
+        'nama_produk',
+        'sampah_id',
+        'foto',
+        'link_pembelian'
+    ];
 
     public function sampah()
     {
         return $this->belongsTo(Sampah::class, 'sampah_id');
     }
-
 }

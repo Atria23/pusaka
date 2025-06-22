@@ -187,50 +187,67 @@ export default function Vouchers({ vouchers }) {
                             className="border border-main_light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-main bg-main_white resize-none"
                             rows={3}
                         />
-                        <input
-                            type="text"
-                            name="nilai_poin"
-                            placeholder="Nilai Poin"
-                            value={Number(form.nilai_poin || 0).toLocaleString('id-ID')}
-                            onChange={(e) => {
-                                const value = e.target.value.replace(/\./g, ''); // hapus titik
-                                if (!isNaN(value)) {
-                                    setForm({ ...form, nilai_poin: value });
-                                }
-                            }}
-                            className="border border-main_light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-main bg-main_white"
-                            required
-                            inputMode="numeric"
-                            onWheel={(e) => e.target.blur()}
-                        />
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Nilai Poin
+                            </label>
+                            <input
+                                type="text"
+                                name="nilai_poin"
+                                placeholder="Nilai Poin"
+                                value={Number(form.nilai_poin || 0).toLocaleString('id-ID')}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\./g, '');
+                                    if (!isNaN(value)) {
+                                        setForm({ ...form, nilai_poin: value });
+                                    }
+                                }}
+                                className="border border-main_light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-main bg-main_white"
+                                required
+                                inputMode="numeric"
+                                onWheel={(e) => e.target.blur()}
+                            />
+                        </div>
 
-                        <input
-                            type="text"
-                            name="stok"
-                            placeholder="Stok"
-                            value={Number(form.stok || 0).toLocaleString('id-ID')}
-                            onChange={(e) => {
-                                const value = e.target.value.replace(/\./g, ''); // hapus titik
-                                if (!isNaN(value)) {
-                                    setForm({ ...form, stok: value });
-                                }
-                            }}
-                            className="border border-main_light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-main bg-main_white"
-                            required
-                            inputMode="numeric"
-                            onWheel={(e) => e.target.blur()}
-                        />
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Stok
+                            </label>
+                            <input
+                                type="text"
+                                name="stok"
+                                placeholder="Stok"
+                                value={Number(form.stok || 0).toLocaleString('id-ID')}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\./g, '');
+                                    if (!isNaN(value)) {
+                                        setForm({ ...form, stok: value });
+                                    }
+                                }}
+                                className="border border-main_light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-main bg-main_white"
+                                required
+                                inputMode="numeric"
+                                onWheel={(e) => e.target.blur()}
+                            />
+                        </div>
 
-                        <select
-                            name="status"
-                            value={form.status}
-                            onChange={handleChange}
-                            className="w-full border px-2 py-1 rounded"
-                            required
-                        >
-                            <option value="tersedia">Tersedia</option>
-                            <option value="tidak tersedia">Tidak Tersedia</option>
-                        </select>
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Status
+                            </label>
+                            <select
+                                name="status"
+                                value={form.status}
+                                onChange={handleChange}
+                                className="w-full border px-2 py-1 rounded"
+                                required
+                            >
+                                <option value="tersedia">Tersedia</option>
+                                <option value="tidak tersedia">Tidak Tersedia</option>
+                            </select>
+                        </div>
+
+
                         <div className="flex items-start space-x-4 bg-white p-4 rounded-md shadow-sm border border-gray-200">
                             {preview ? (
                                 <img

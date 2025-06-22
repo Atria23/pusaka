@@ -16,21 +16,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\CategoryController;
-// use App\Http\Controllers\WalletController;
-// use App\Http\Controllers\CartController;
-// use App\Http\Controllers\HistoryController;
-// use App\Http\Controllers\BrandController;
-// use App\Http\Controllers\BrandCategoryController;
-// use App\Http\Controllers\TypeController;
-// use App\Http\Controllers\User\PoinmuHistoryController;
-// use App\Http\Controllers\User\PoinmuController;
-// use App\Http\Controllers\User\BalanceMutationController;
-// use App\Http\Controllers\User\UserProductController;
-// use App\Http\Controllers\User\AffiliateFriendController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\Admin\LaporanPenggunaController;
 use App\Http\Controllers\Admin\LaporanAdminController;
 use App\Http\Controllers\Admin\SampahController;
 use App\Http\Controllers\Admin\SetoranController;
@@ -104,8 +91,6 @@ Route::middleware(['admin-or-super-admin'])->prefix('admin')->name('admin.')->gr
     Route::post('/sampah', [SampahController::class, 'store'])->name('sampah.store');
     Route::put('/sampah/{id}', [SampahController::class, 'update'])->name('sampah.update');
     Route::delete('/sampah/{id}', [SampahController::class, 'destroy'])->name('sampah.destroy');
-    Route::get('/laporan-pengguna', [LaporanPenggunaController::class, 'index'])
-    ->name('laporan-pengguna.index');
 });
 
 Route::middleware(['super-admin'])->group(function () {

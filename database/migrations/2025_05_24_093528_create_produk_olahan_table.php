@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('nama_produk', 100);
             $table->foreignId('sampah_id')->constrained('sampah');
             $table->string('foto')->nullable();
+            $table->string('link_pembelian')->nullable();
             $table->timestamps();
         });
     }
