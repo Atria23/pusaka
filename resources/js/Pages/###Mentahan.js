@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-react';
 import { Html5Qrcode } from "html5-qrcode";
@@ -6,99 +6,125 @@ import { Html5Qrcode } from "html5-qrcode";
 export default function Penukaran({ penukarans }) {
   const [expandedId, setExpandedId] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
-  const [message, setMessage] = useState(null);
   const [search, setSearch] = useState('');
   const [sortOrder, setSortOrder] = useState('desc');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [scanning, setScanning] = useState(false);
+  const scannerRef = useRef(null);
   const html5QrCodeRef = useRef(null);
-  const scannerContainerRef = useRef(null);
 
-  const startScan = async () => {
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-      html5QrCode.stop();
-      if (decodedText) {
-        const id = decodedText.trim();
-        const found = penukarans.find(p => p.id.toString() === id);
-        if (found) {
-          setSearch(id);
-          setCurrentPage(1);
-        } else {
-          alert('Data penukaran tidak ditemukan.');
-        }
-      }
+  useEffect(() => {
+    if (scanning) {
+      startScanner();
+    } else {
+      stopScanner();
+    }
+
+    return () => {
+      stopScanner();
     };
+  }, [scanning]);
 
-    const html5QrCode = new Html5Qrcode("qr-reader");
+  const startScanner = async () => {
+    if (!scannerRef.current) return;
+
+    const html5QrCode = new Html5Qrcode(scannerRef.current.id);
+    html5QrCodeRef.current = html5QrCode;
+
+    const containerWidth = scannerRef.current.getBoundingClientRect().width;
+    const videoWidth = Math.min(containerWidth * 0.95, 400); // maksimal 400px supaya aman di semua device
+
     try {
-      await html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, qrCodeSuccessCallback);
+      await html5QrCode.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: {
+            width: videoWidth * 0.8,
+            height: videoWidth * 0.8
+          },
+          aspectRatio: 1.0,  // Biar tetap square
+          videoConstraints: {
+            width: { ideal: videoWidth }
+          }
+        },
+        async (decodedText) => {
+          if (decodedText) {
+            const id = decodedText.trim();
+            const found = penukarans.find(p => p.id.toString() === id);
+            if (found) {
+              setSearch(id);
+              setCurrentPage(1);
+            } else {
+              alert('Data penukaran tidak ditemukan.');
+            }
+          }
+          await html5QrCode.stop();
+          await html5QrCode.clear();
+          html5QrCodeRef.current = null;
+          setScanning(false);
+        }
+      );
     } catch (err) {
-      console.error("Failed to start scanning.", err);
-      alert("Tidak dapat mengakses kamera. Pastikan izin kamera diaktifkan.");
+      console.error(err);
+      alert("Gagal mengakses kamera. Pastikan izin kamera sudah diaktifkan.");
+      setScanning(false);
     }
   };
 
 
-  const stopScan = async () => {
+
+  const stopScanner = async () => {
     if (html5QrCodeRef.current) {
       await html5QrCodeRef.current.stop();
-      html5QrCodeRef.current.clear();
+      await html5QrCodeRef.current.clear();
       html5QrCodeRef.current = null;
     }
-    setScanning(false);
   };
+
+  const handleScanResult = async (decodedText) => {
+    if (decodedText) {
+      const id = decodedText.trim();
+      const found = penukarans.find(p => p.id.toString() === id);
+      if (found) {
+        setSearch(id);
+        setCurrentPage(1);
+      } else {
+        alert('Data penukaran tidak ditemukan.');
+      }
+    }
+    await stopScanner();
+  }
 
   const toggleStatus = (penukaran) => {
     const newStatus = penukaran.status === 'sudah diredeem' ? 'belum diredeem' : 'sudah diredeem';
     setUpdatingId(penukaran.id);
-
     Inertia.put(`/admin/penukarans/${penukaran.id}/status`, { status: newStatus }, {
-      onSuccess: (page) => {
-        setMessage(page.props.flash.message);
-        setUpdatingId(null);
-      }
+      onSuccess: () => setUpdatingId(null)
     });
   };
 
   const filteredSortedPenukarans = useMemo(() => {
     let filtered = penukarans;
-
     if (search.trim() !== '') {
       const keyword = search.toLowerCase();
-      filtered = filtered.filter(p =>
-        p.user?.name?.toLowerCase().includes(keyword) ||
-        p.voucher?.nama?.toLowerCase().includes(keyword) ||
-        p.id.toString().includes(keyword)
-      );
+      filtered = filtered.filter(p => {
+        const matchName = p.user?.name?.toLowerCase().includes(keyword);
+        const matchVoucher = p.voucher?.nama?.toLowerCase().includes(keyword);
+        const matchId = p.id.toString() === search.trim(); // exact match untuk ID
+        return matchName || matchVoucher || matchId;
+      });
     }
-
-
-    filtered.sort((a, b) => {
-      const dateA = new Date(a.created_at);
-      const dateB = new Date(b.created_at);
-      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
-    });
-
+    filtered.sort((a, b) => new Date(sortOrder === 'asc' ? a.created_at : b.created_at) - new Date(sortOrder === 'asc' ? b.created_at : a.created_at));
     return filtered;
   }, [penukarans, search, sortOrder]);
 
+
   const totalPages = Math.ceil(filteredSortedPenukarans.length / itemsPerPage);
-  const paginatedPenukarans = filteredSortedPenukarans.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  const goToPage = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
-
-  const formatNumber = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-    }).format(number);
-  };
+  const paginatedPenukarans = filteredSortedPenukarans.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const goToPage = (page) => { if (page >= 1 && page <= totalPages) setCurrentPage(page); };
+  const formatNumber = (number) => new Intl.NumberFormat('id-ID').format(number);
 
   return (
     <>
@@ -135,9 +161,13 @@ export default function Penukaran({ penukarans }) {
                   }}
                   className="bg-transparent border-none flex-grow focus:ring-0 focus:outline-none text-sm placeholder-gray-400"
                 />
-                <button onClick={startScan} className="text-main">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3v3m0 12v3m18-18v3m0 12v3M7 5h10M7 19h10M5 7v10M19 7v10" />
+                <button onClick={() => setScanning(true)} className="text-main">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-5 h-5" viewBox="0 0 16 16">
+                    <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
+                    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                    <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
+                    <path d="M12 9h2V8h-2z" />
                   </svg>
                 </button>
 
@@ -161,9 +191,6 @@ export default function Penukaran({ penukarans }) {
                 )}
               </button>
             </div>
-
-            {/* Tambahkan ini */}
-            <div id="qr-reader" className="my-4"></div>
 
           </div>
         </div>
@@ -330,16 +357,21 @@ export default function Penukaran({ penukarans }) {
           </div>
         )}
       </div>
+
       {scanning && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
-          <div className="w-full max-w-sm bg-white p-4 rounded-lg relative">
-            <div ref={scannerContainerRef} id="qr-scanner" className="w-full h-64 bg-gray-200"></div>
-            <button onClick={stopScan} className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1">
+          <div className="bg-white rounded-lg relative w-full max-w-sm mx-4 sm:mx-0 sm:w-full sm:max-w-md p-4">
+            <div ref={scannerRef} id="qr-reader" className="w-full max-w-full aspect-square bg-gray-200 rounded-lg overflow-hidden"></div>
+            <button
+              onClick={() => setScanning(false)}
+              className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1"
+            >
               ✕
             </button>
           </div>
         </div>
       )}
+
 
     </>
   );

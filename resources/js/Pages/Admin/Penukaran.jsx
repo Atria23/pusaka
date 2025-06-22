@@ -13,71 +13,55 @@ export default function Penukaran({ penukarans }) {
   const [scanning, setScanning] = useState(false);
   const scannerRef = useRef(null);
   const html5QrCodeRef = useRef(null);
+  const [cameraId, setCameraId] = useState(null);
+  const [availableCameras, setAvailableCameras] = useState([]);
 
   useEffect(() => {
     if (scanning) {
-      startScanner();
-    } else {
-      stopScanner();
+      getCameraDevices();
     }
-
     return () => {
       stopScanner();
     };
   }, [scanning]);
 
-  // const startScanner = async () => {
-  //   if (!scannerRef.current) return;
+  const getCameraDevices = async () => {
+    try {
+      const devices = await Html5Qrcode.getCameras();
+      setAvailableCameras(devices);
+      if (devices.length > 0) {
+        setCameraId(devices[0].id); // default ke kamera pertama
+        startScanner(devices[0].id);
+      } else {
+        alert("Tidak ada kamera yang tersedia.");
+        setScanning(false);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Gagal mengakses kamera.");
+      setScanning(false);
+    }
+  };
 
-  //   const html5QrCode = new Html5Qrcode(scannerRef.current.id);
-  //   html5QrCodeRef.current = html5QrCode;
-
-  //   try {
-  //     await html5QrCode.start(
-  //       { facingMode: "environment" },
-  //       { fps: 10, qrbox: 250 },
-  //       async (decodedText) => {
-  //         if (decodedText) {
-  //           const id = decodedText.trim();
-  //           const found = penukarans.find(p => p.id.toString() === id);
-  //           if (found) {
-  //             setSearch(id);
-  //             setCurrentPage(1);
-  //           } else {
-  //             alert('Data penukaran tidak ditemukan.');
-  //           }
-  //         }
-  //         await html5QrCode.stop();
-  //         await html5QrCode.clear();
-  //         html5QrCodeRef.current = null;
-  //         setScanning(false);
-  //       }
-  //     );
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("Gagal mengakses kamera. Pastikan izin kamera sudah diaktifkan.");
-  //     setScanning(false);
-  //   }
-  // };
-  const startScanner = async () => {
+  const startScanner = async (selectedCameraId) => {
     if (!scannerRef.current) return;
-  
+
     const html5QrCode = new Html5Qrcode(scannerRef.current.id);
     html5QrCodeRef.current = html5QrCode;
-  
+
     const containerWidth = scannerRef.current.getBoundingClientRect().width;
-    const videoWidth = Math.min(containerWidth * 0.95, 400); // maksimal 400px supaya aman di semua device
-  
+    const videoWidth = Math.min(containerWidth * 0.95, 400);
+
     try {
       await html5QrCode.start(
-        { facingMode: "environment" },
+        { deviceId: { exact: selectedCameraId } },
         {
           fps: 10,
           qrbox: {
-            width: videoWidth * 0.8, 
+            width: videoWidth * 0.8,
             height: videoWidth * 0.8
           },
-          aspectRatio: 1.0,  // Biar tetap square
+          aspectRatio: 1.0,
           videoConstraints: {
             width: { ideal: videoWidth }
           }
@@ -105,8 +89,6 @@ export default function Penukaran({ penukarans }) {
       setScanning(false);
     }
   };
-  
-  
 
   const stopScanner = async () => {
     if (html5QrCodeRef.current) {
@@ -354,7 +336,6 @@ export default function Penukaran({ penukarans }) {
           )}
         </div>
 
-
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center space-x-2 pb-8">
@@ -390,28 +371,34 @@ export default function Penukaran({ penukarans }) {
           </div>
         )}
       </div>
-      {/* Modal QR Scanner */}
-      {/* {scanning && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-lg relative w-full max-w-sm">
-            <div ref={scannerRef} id="qr-reader" className="w-full h-64 bg-gray-200"></div>
-            <button onClick={() => setScanning(false)} className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1">✕</button>
-          </div>
-        </div>
-      )} */}
+
       {scanning && (
-  <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
-    <div className="bg-white rounded-lg relative w-full max-w-sm mx-4 sm:mx-0 sm:w-full sm:max-w-md p-4">
-    <div ref={scannerRef} id="qr-reader" className="w-full max-w-full aspect-square bg-gray-200 rounded-lg overflow-hidden"></div>
-      <button
-        onClick={() => setScanning(false)}
-        className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1"
-      >
-        ✕
-      </button>
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
+          <div className="bg-white rounded-lg relative w-full max-w-sm mx-4 sm:mx-0 sm:w-full sm:max-w-md p-4">
+            <div ref={scannerRef} id="qr-reader" className="w-full max-w-full aspect-square bg-gray-200 rounded-lg overflow-hidden"></div>
+            <button
+              onClick={() => setScanning(false)}
+              className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1"
+            >
+              ✕
+            </button>
+          </div>
+          {availableCameras.length > 1 && (
+            <button
+              onClick={() => {
+                const currentIndex = availableCameras.findIndex(cam => cam.id === cameraId);
+                const nextIndex = (currentIndex + 1) % availableCameras.length;
+                setCameraId(availableCameras[nextIndex].id);
+                stopScanner().then(() => startScanner(availableCameras[nextIndex].id));
+              }}
+              className="absolute top-2 left-2 bg-blue-500 text-white rounded-full p-1"
+            >
+              🔄
+            </button>
+          )}
+
+        </div>
+      )}
 
 
     </>
