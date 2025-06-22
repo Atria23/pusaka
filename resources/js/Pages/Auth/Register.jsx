@@ -133,6 +133,27 @@ export default function Register() {
                                 </div>
 
                                 <div>
+                                    <label className="block text-gray-700 mb-1">No. WhatsApp</label>
+                                    <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
+                                        <input
+                                            id="kontak"
+                                            type="text"
+                                            name="kontak"
+                                            value={data.kontak}
+                                            placeholder="Contoh: 081234567890"
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, '');
+                                                setData('kontak', val);
+                                            }}
+                                            inputMode="numeric"
+                                            className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
+                                            required
+                                        />
+                                    </div>
+                                    {errors.kontak && <p className="text-red-500 text-sm mt-1">{errors.kontak}</p>}
+                                </div>
+
+                                <div>
                                     <label className="block text-gray-700 mb-1">Email</label>
                                     <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
                                         <input
@@ -231,26 +252,6 @@ export default function Register() {
                                         />
                                     </div>
                                     {errors.alamat && <p className="text-red-500 text-sm mt-1">{errors.alamat}</p>}
-                                </div>
-
-                                <div>
-                                    <label className="block text-gray-700 mb-1">No. WhatsApp (Opsional)</label>
-                                    <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
-                                        <input
-                                            id="kontak"
-                                            type="text"
-                                            name="kontak"
-                                            value={data.kontak}
-                                            placeholder="Contoh: 081234567890"
-                                            onChange={(e) => {
-                                                const val = e.target.value.replace(/\D/g, '');
-                                                setData('kontak', val);
-                                            }}
-                                            inputMode="numeric"
-                                            className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
-                                        />
-                                    </div>
-                                    {errors.kontak && <p className="text-red-500 text-sm mt-1">{errors.kontak}</p>}
                                 </div>
 
 

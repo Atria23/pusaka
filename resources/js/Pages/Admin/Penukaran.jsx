@@ -26,16 +26,62 @@ export default function Penukaran({ penukarans }) {
     };
   }, [scanning]);
 
+  // const startScanner = async () => {
+  //   if (!scannerRef.current) return;
+
+  //   const html5QrCode = new Html5Qrcode(scannerRef.current.id);
+  //   html5QrCodeRef.current = html5QrCode;
+
+  //   try {
+  //     await html5QrCode.start(
+  //       { facingMode: "environment" },
+  //       { fps: 10, qrbox: 250 },
+  //       async (decodedText) => {
+  //         if (decodedText) {
+  //           const id = decodedText.trim();
+  //           const found = penukarans.find(p => p.id.toString() === id);
+  //           if (found) {
+  //             setSearch(id);
+  //             setCurrentPage(1);
+  //           } else {
+  //             alert('Data penukaran tidak ditemukan.');
+  //           }
+  //         }
+  //         await html5QrCode.stop();
+  //         await html5QrCode.clear();
+  //         html5QrCodeRef.current = null;
+  //         setScanning(false);
+  //       }
+  //     );
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Gagal mengakses kamera. Pastikan izin kamera sudah diaktifkan.");
+  //     setScanning(false);
+  //   }
+  // };
   const startScanner = async () => {
     if (!scannerRef.current) return;
-
+  
     const html5QrCode = new Html5Qrcode(scannerRef.current.id);
     html5QrCodeRef.current = html5QrCode;
-
+  
+    const containerWidth = scannerRef.current.getBoundingClientRect().width;
+    const videoWidth = Math.min(containerWidth * 0.95, 400); // maksimal 400px supaya aman di semua device
+  
     try {
       await html5QrCode.start(
         { facingMode: "environment" },
-        { fps: 10, qrbox: 250 },
+        {
+          fps: 10,
+          qrbox: {
+            width: videoWidth * 0.8, 
+            height: videoWidth * 0.8
+          },
+          aspectRatio: 1.0,  // Biar tetap square
+          videoConstraints: {
+            width: { ideal: videoWidth }
+          }
+        },
         async (decodedText) => {
           if (decodedText) {
             const id = decodedText.trim();
@@ -59,6 +105,8 @@ export default function Penukaran({ penukarans }) {
       setScanning(false);
     }
   };
+  
+  
 
   const stopScanner = async () => {
     if (html5QrCodeRef.current) {
@@ -147,13 +195,13 @@ export default function Penukaran({ penukarans }) {
                   className="bg-transparent border-none flex-grow focus:ring-0 focus:outline-none text-sm placeholder-gray-400"
                 />
                 <button onClick={() => setScanning(true)} className="text-main">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 16 16">
-  <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
-  <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/>
-  <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
-  <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
-  <path d="M12 9h2V8h-2z"/>
-</svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-5 h-5" viewBox="0 0 16 16">
+                    <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
+                    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                    <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
+                    <path d="M12 9h2V8h-2z" />
+                  </svg>
                 </button>
 
 
@@ -343,14 +391,28 @@ export default function Penukaran({ penukarans }) {
         )}
       </div>
       {/* Modal QR Scanner */}
-      {scanning && (
+      {/* {scanning && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
           <div className="bg-white p-4 rounded-lg relative w-full max-w-sm">
             <div ref={scannerRef} id="qr-reader" className="w-full h-64 bg-gray-200"></div>
             <button onClick={() => setScanning(false)} className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1">✕</button>
           </div>
         </div>
-      )}
+      )} */}
+      {scanning && (
+  <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
+    <div className="bg-white rounded-lg relative w-full max-w-sm mx-4 sm:mx-0 sm:w-full sm:max-w-md p-4">
+    <div ref={scannerRef} id="qr-reader" className="w-full max-w-full aspect-square bg-gray-200 rounded-lg overflow-hidden"></div>
+      <button
+        onClick={() => setScanning(false)}
+        className="absolute top-2 right-2 bg-rose-500 text-white rounded-full p-1"
+      >
+        ✕
+      </button>
+    </div>
+  </div>
+)}
+
 
     </>
   );
