@@ -13,6 +13,11 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\WordpressUser;
+use Hautelook\Phpass\PasswordHash;
+use Illuminate\Support\Facades\DB;
+
+
 
 class NewPasswordController extends Controller
 {
@@ -39,29 +44,42 @@ class NewPasswordController extends Controller
             'email' => 'required|email',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+    
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
+                $newPassword = $request->password;
+    
+                // ✅ Reset password di Laravel
                 $user->forceFill([
-                    'password' => Hash::make($request->password),
+                    'password' => Hash::make($newPassword),
                     'remember_token' => Str::random(60),
                 ])->save();
-
+    
                 event(new PasswordReset($user));
+    
+                // ✅ Reset password di WordPress
+                try {
+                    $hasher = new PasswordHash(8, true);
+                    $hashedPassword = $hasher->HashPassword($newPassword);
+    
+                    DB::connection('wordpress')
+                        ->table('users') // TANPA prefix
+                        ->where('user_email', $user->email)
+                        ->update(['user_pass' => $hashedPassword]);
+                } catch (\Exception $e) {
+                    logger()->error('Gagal update password WordPress', [
+                        'email' => $user->email,
+                        'error' => $e->getMessage(),
+                    ]);
+                }
             }
         );
-
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
+    
         if ($status == Password::PASSWORD_RESET) {
             return redirect()->route('reset.password.success')->with('status', __($status));
         }
-
+    
         throw ValidationException::withMessages([
             'email' => [trans($status)],
         ]);

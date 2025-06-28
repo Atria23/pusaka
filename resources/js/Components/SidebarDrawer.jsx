@@ -141,7 +141,7 @@ export default function SidebarDrawer() {
                     </li>
                     <li>
                         <a
-                            href={`https://blog.${window.location.hostname.replace(/^www\./, '')}/modul`}
+                            href={`https://blog.${window.location.hostname.replace(/^www\./, '')}/courses`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"

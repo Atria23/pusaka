@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Head, usePage, useForm } from '@inertiajs/react'
 
 export default function Edit() {
@@ -16,6 +16,9 @@ export default function Edit() {
         selectedRoles: user.roles.map(role => role.name),
         _method: 'PUT',
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
     const updateUser = (e) => {
         e.preventDefault();
@@ -125,25 +128,65 @@ export default function Edit() {
                             {errors.kontak && <p className="text-xs text-red-400 mt-1">{errors.kontak}</p>}
                         </div>
 
+                        {/* Password Baru */}
                         <div>
                             <label className="w-full text-gray-700">Kata Sandi Baru</label>
-                            <input
-                                type="password"
-                                className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={data.password}
-                                onChange={e => setData('password', e.target.value)}
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    className="w-full px-3 py-2 pr-10 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
+                                    value={data.password}
+                                    onChange={e => setData('password', e.target.value)}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                                >
+                                    {showPassword ? (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="text-main" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
+                                            <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
+                                        </svg>
+                                    ) : (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="text-main" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
                             {errors.password && <p className="text-xs text-red-400 mt-1">{errors.password}</p>}
                         </div>
 
+                        {/* Konfirmasi Password */}
                         <div>
                             <label className="w-full text-gray-700">Konfirmasi Kata Sandi</label>
-                            <input
-                                type="password"
-                                className="w-full px-3 py-2 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
-                                value={data.password_confirmation}
-                                onChange={e => setData('password_confirmation', e.target.value)}
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPasswordConfirm ? "text" : "password"}
+                                    className="w-full px-3 py-2 pr-10 bg-neutral-100 text-black border border-gray-300 rounded-lg text-sm"
+                                    value={data.password_confirmation}
+                                    onChange={e => setData('password_confirmation', e.target.value)}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
+                                    className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                                >
+                                    {showPasswordConfirm ? (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="text-main" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
+                                            <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
+                                        </svg>
+                                    ) : (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="text-main" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
                             {errors.password_confirmation && <p className="text-xs text-red-400 mt-1">{errors.password_confirmation}</p>}
                         </div>
 

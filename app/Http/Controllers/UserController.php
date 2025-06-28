@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\DB;
+use Hautelook\Phpass\PasswordHash;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -92,26 +94,51 @@ class UserController extends Controller implements HasMiddleware
      * Update the specified resource in storage.
      */
     public function update(UserRequest $request, User $user)
-    {
+{
+    $oldEmail = $user->email;
+
+    // Update user Laravel
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'rt' => $request->rt,
+        'rw' => $request->rw,
+        'alamat' => $request->alamat,
+        'kontak' => $request->kontak,
+    ]);
+
+    // Simpan password baru jika diisi
+    if ($request->filled('password')) {
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
-            'alamat' => $request->alamat,
-            'kontak' => $request->kontak,
+            'password' => bcrypt($request->password),
         ]);
-
-        if ($request->filled('password')) {
-            $user->update([
-                'password' => bcrypt($request->password),
-            ]);
-        }
-
-        $user->syncRoles($request->selectedRoles);
-
-        return to_route('manage-users.index');
     }
+
+    $user->syncRoles($request->selectedRoles);
+
+    // ==== UPDATE ke WordPress ====
+    $displayName = $user->name . '_' . $user->kontak . '_' . $user->email;
+
+    // Siapkan updater WordPress
+    $wpUpdate = [
+        'user_email'    => $user->email,
+        'display_name'  => $displayName,
+    ];
+
+    // Jika password baru diisi, hash dengan format WordPress
+    if ($request->filled('password')) {
+        $hasher = new PasswordHash(8, true); // sama seperti WordPress
+        $wpUpdate['user_pass'] = $hasher->HashPassword($request->password);
+    }
+
+    // Lakukan update ke wp_users
+    DB::connection('wordpress')
+        ->table('users') // ganti ke 'wp6b_users' jika prefix belum otomatis
+        ->where('user_email', $oldEmail)
+        ->update($wpUpdate);
+
+    return to_route('manage-users.index');
+}
 
     /**
      * Remove the specified resource from storage.

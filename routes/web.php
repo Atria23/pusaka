@@ -24,6 +24,9 @@ use App\Http\Controllers\Admin\SetoranController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\PenukaranController;
 use App\Http\Controllers\ProdukOlahanController;
+use App\Http\Controllers\UserSyncController;
+
+Route::get('/sync-users', [\App\Http\Controllers\UserSyncController::class, 'syncToWordPress']);
 
 Route::get('reset-password-success', function () {
     return Inertia::render('Auth/ResetPasswordSuccess');
