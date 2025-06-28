@@ -9,7 +9,7 @@ class WordpressUser extends Model
     protected $connection = 'wordpress';
     protected $table = 'users';
 
-    protected $fillable = [
+    protected $fillable = [ 
         'user_login',
         'user_pass',
         'user_nicename',

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'; 
 import { Link, Head, useForm } from '@inertiajs/react';
 
 export default function ResetPassword({ token, email }) {

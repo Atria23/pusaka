@@ -7,7 +7,7 @@ export default function Edit() {
     const { data, setData, post, errors } = useForm({
         name: user.name || '',
         email: user.email || '',
-        rt: user.rt || '',
+        rt: user.rt || '', 
         rw: user.rw || '',
         alamat: user.alamat || '',
         kontak: user.kontak || '',
