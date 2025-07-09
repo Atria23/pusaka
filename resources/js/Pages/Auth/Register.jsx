@@ -20,7 +20,6 @@ export default function Register() {
         data.name &&
         data.rt &&
         data.rw &&
-        data.email &&
         data.password &&
         data.password_confirmation &&
         isChecked
@@ -87,15 +86,15 @@ export default function Register() {
                                             placeholder="Contoh: 02"
                                             onChange={(e) => {
                                                 let val = e.target.value;
-                                            
+
                                                 // Hanya angka, maksimal 2 digit
                                                 if (/^\d{0,2}$/.test(val)) {
                                                     // Tolak hanya "0"
                                                     if (val === '0') return;
-                                            
+
                                                     setData('rt', val);
                                                 }
-                                            }}                                            
+                                            }}
                                             inputMode="numeric"
                                             className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
                                             required
@@ -115,12 +114,12 @@ export default function Register() {
                                             placeholder="Contoh: 01"
                                             onChange={(e) => {
                                                 let val = e.target.value;
-                                            
+
                                                 // Hanya angka, maksimal 2 digit
                                                 if (/^\d{0,2}$/.test(val)) {
                                                     // Tolak hanya "0"
                                                     if (val === '0') return;
-                                            
+
                                                     setData('rw', val);
                                                 }
                                             }}
@@ -133,7 +132,7 @@ export default function Register() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-gray-700 mb-1">No. WhatsApp</label>
+                                    <label className="block text-gray-700 mb-1">No. Telepon</label>
                                     <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
                                         <input
                                             id="kontak"
@@ -151,23 +150,6 @@ export default function Register() {
                                         />
                                     </div>
                                     {errors.kontak && <p className="text-red-500 text-sm mt-1">{errors.kontak}</p>}
-                                </div>
-
-                                <div>
-                                    <label className="block text-gray-700 mb-1">Email</label>
-                                    <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            name="email"
-                                            value={data.email}
-                                            placeholder="pusaka@gmail.com"
-                                            onChange={(e) => setData('email', e.target.value)}
-                                            className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
-                                            required
-                                        />
-                                    </div>
-                                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                                 </div>
 
                                 <div>
@@ -237,7 +219,23 @@ export default function Register() {
                                     </div>
                                     {errors.password_confirmation && <p className="text-red-500 text-sm mt-1">{errors.password_confirmation}</p>}
                                 </div>
-                                
+
+                                <div>
+                                    <label className="block text-gray-700 mb-1">Email (Opsional)</label>
+                                    <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            name="email"
+                                            value={data.email}
+                                            placeholder="pusaka@gmail.com"
+                                            onChange={(e) => setData('email', e.target.value)}
+                                            className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
+                                        />
+                                    </div>
+                                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                                </div>
+
                                 <div>
                                     <label className="block text-gray-700 mb-1">Alamat (Opsional)</label>
                                     <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">

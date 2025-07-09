@@ -25,6 +25,14 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\PenukaranController;
 use App\Http\Controllers\ProdukOlahanController;
 use App\Http\Controllers\UserSyncController;
+use App\Http\Controllers\Auth\OtpResetRequestController;
+use App\Http\Controllers\Auth\ResetWithOtpController;
+
+Route::get('/reset-password-otp', [ResetWithOtpController::class, 'create'])->name('password.otp.reset');
+Route::post('/reset-password-otp', [ResetWithOtpController::class, 'store'])->name('password.otp.reset.submit');
+// Kontak/OTP reset (baru)
+Route::get('/forgot-password-otp', [OtpResetRequestController::class, 'create'])->name('password.otp.request');
+Route::post('/forgot-password-otp', [OtpResetRequestController::class, 'store'])->name('password.otp.send');
 
 Route::get('/sync-users', [\App\Http\Controllers\UserSyncController::class, 'syncToWordPress']);
 

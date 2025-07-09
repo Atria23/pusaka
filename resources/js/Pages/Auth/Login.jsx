@@ -2,14 +2,21 @@ import { useEffect, useState } from 'react';
 import { Link, Head, useForm } from '@inertiajs/react';
 
 export default function Login({ canResetPassword }) {
+    // const { data, setData, post, processing, errors, reset } = useForm({
+    //     email: '',
+    //     password: '',
+    //     remember: false,
+    // });
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
+        login: '', // sebelumnya: email
         password: '',
         remember: false,
     });
+    
 
     const [showPassword, setShowPassword] = useState(false);
-    const isFormValid = data.email && data.password;
+    // const isFormValid = data.email && data.password;
+    const isFormValid = data.login && data.password;
 
     useEffect(() => {
         return () => {
@@ -43,7 +50,7 @@ export default function Login({ canResetPassword }) {
                         <form onSubmit={submit} className="w-full">
                             <div className="w-full h-max flex flex-col space-y-4 mb-6">
                                 <div>
-                                    <label className="block text-gray-700 mb-1">Email</label>
+                                    {/* <label className="block text-gray-700 mb-1">Email</label>
                                     <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
                                         <input
                                             id="email"
@@ -56,7 +63,22 @@ export default function Login({ canResetPassword }) {
                                             required
                                         />
                                     </div>
-                                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>} */}
+                                    <label className="block text-gray-700 mb-1">Email / Nomor HP</label>
+<div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200">
+    <input
+        id="login"
+        type="text"
+        name="login"
+        value={data.login}
+        placeholder="Masukkan email atau nomor HP"
+        onChange={(e) => setData('login', e.target.value)}
+        className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
+        required
+    />
+</div>
+{errors.login && <p className="text-red-500 text-sm mt-1">{errors.login}</p>}
+
                                 </div>
 
                                 <div>
@@ -140,3 +162,4 @@ export default function Login({ canResetPassword }) {
         </>
     );
 }
+

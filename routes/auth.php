@@ -11,6 +11,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\OtpResetRequestController; 
+
+// Kontak/OTP reset (baru)
+Route::get('/forgot-password-otp', [OtpResetRequestController::class, 'create'])->name('password.otp.request');
+Route::post('/forgot-password-otp', [OtpResetRequestController::class, 'store'])->name('password.otp.send');
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');

@@ -32,7 +32,8 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'email' => 'nullable|string|lowercase|email|max:255|unique:users,email',
+            'kontak' => 'required|string|max:20|unique:users,kontak',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
     
@@ -50,35 +51,41 @@ class RegisteredUserController extends Controller
     
         // ✅ Simpan password plain untuk sinkronisasi
         $passwordPlain = $request->password;
-    
-        // Buat user di Laravel
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($passwordPlain),
-            'rt' => $rt,
-            'rw' => $rw,
-            'alamat' => $request->alamat,
-            'kontak' => $request->kontak,
-        ]);
+        
+        $nomorHp = preg_replace('/[^0-9]/', '', $request->kontak); // sanitasi
+$email = $request->filled('email')
+    ? strtolower(trim($request->email)) // jika diisi, pakai email asli
+    : $nomorHp . '@pusaka.local';       // jika kosong, pakai dummy
+
+$user = User::create([
+    'name' => $request->name,
+    'email' => $email,
+    'password' => Hash::make($passwordPlain),
+    'rt' => $rt,
+    'rw' => $rw,
+    'alamat' => $request->alamat,
+    'kontak' => $request->kontak,
+]);
+
     
         $user->assignRole('user');
     
         $hasher = new \Hautelook\Phpass\PasswordHash(8, true);
     
-    $exists = \App\Models\WordpressUser::where('user_email', $user->email)->first();
+    // $exists = \App\Models\WordpressUser::where('user_email', $user->email)->first();
+    $exists = \App\Models\WordpressUser::where('user_email', $email)->first();
     
     if (!$exists) {
         $hashedPassword = $hasher->HashPassword($request->password);
-    
+        
         $wpUser = \App\Models\WordpressUser::create([
-            'user_login'      => Str::slug($user->name),
-            'user_pass'       => $hashedPassword,
-            'user_nicename'   => Str::slug($user->name),
-            'user_email'      => $user->email,
+            'user_login'    => $user->kontak,
+            'user_pass'     => $hashedPassword,
+            'user_nicename' => Str::slug($user->name),
+            'user_email'    => $email,
             'user_registered' => now(),
-            'user_status'     => 0,
-            'display_name'    =>  $user->name . ' - ' . $user->kontak . ' - ' . $user->email,
+            'user_status'   => 0,
+            'display_name'  => $user->name . ' - ' . $user->kontak . ' - ' . $email,
         ]);
     
         DB::connection('wordpress')->table('usermeta')->insert([
@@ -95,17 +102,20 @@ class RegisteredUserController extends Controller
         ]);
     }
 
-    try {
-        event(new Registered($user));
-    } catch (\Exception $e) {
-        return back()->withErrors([
-            'email' => 'Gagal mengirim email verifikasi. Silakan cek kembali email Anda atau hubungi admin.'
-        ]);
-    }
+    // try {
+    //     event(new Registered($user));
+    // } catch (\Exception $e) {
+    //     return back()->withErrors([
+    //         'email' => 'Gagal mengirim email verifikasi. Silakan cek kembali email Anda atau hubungi admin.'
+    //     ]);
+    // }
 
+    // Auth::login($user);
+
+    // return redirect(route('verification.notice', absolute: false));
     Auth::login($user);
+return redirect()->route('dashboard');
 
-    return redirect(route('verification.notice', absolute: false));
 }
 
 } 
