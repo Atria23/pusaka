@@ -113,15 +113,15 @@ return [
             'driver' => 'mysql',
             'host' => env('WP_DB_HOST', 'localhost'),
             'port' => env('WP_DB_PORT', '3306'),
-            'database' => env('WP_DB_DATABASE', 'muvk3261_wp701'),
-            'username' => env('WP_DB_USERNAME', 'muvk3261_muvk3261_wp701'),
+            'database' => env('WP_DB_DATABASE', 'pusakapu_wp316'),
+            'username' => env('WP_DB_USERNAME', 'pusakapu_wp316'),
             'password' => env('WP_DB_PASSWORD', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => 'wp6b_', // ganti sesuai prefix WordPress kamu
+            'prefix' => env('WP_DB_PREFIX', 'wp30_'), // gunakan env di sini
             'strict' => false,
             'engine' => null,
-        ],        
+        ],             
 
     ],
 

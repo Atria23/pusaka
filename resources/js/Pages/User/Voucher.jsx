@@ -151,10 +151,11 @@ export default function Voucher({ vouchers, user }) {
         {paginatedVouchers.map((v) => {
           const disabled = v.stok <= 0 || user.points < v.nilai_poin;
           const buttonLabel = v.stok <= 0
-            ? 'Tidak Tersedia'
-            : user.points < v.nilai_poin
-              ? 'Poin Kurang'
-              : 'Beli Voucher';
+  ? 'Tidak Tersedia'
+  : Number(user.points) < Number(v.nilai_poin)
+    ? 'Poin Kurang'
+    : 'Beli Voucher';
+
           const buttonColor = disabled ? 'bg-gray-400' : 'bg-main';
 
           return (

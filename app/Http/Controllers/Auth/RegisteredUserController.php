@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'email' => 'nullable|string|lowercase|email|max:255|unique:users,email',
             'kontak' => 'required|string|max:20|unique:users,kontak',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'pengelola_air_id' => 'required|exists:pengelola_air,id',
+            'pengelola_air_id' => 'nullable|exists:pengelola_air,id',
         ]);
     
         $rt = $request->rt;
@@ -59,21 +59,20 @@ class RegisteredUserController extends Controller
         $passwordPlain = $request->password;
         
         $nomorHp = preg_replace('/[^0-9]/', '', $request->kontak); // sanitasi
-$email = $request->filled('email')
-    ? strtolower(trim($request->email)) // jika diisi, pakai email asli
-    : $nomorHp . '@pusaka.local';       // jika kosong, pakai dummy
+        $email = $request->filled('email')
+            ? strtolower(trim($request->email)) // jika diisi, pakai email asli
+            : $nomorHp . '@pusaka.local';       // jika kosong, pakai dummy
 
-$user = User::create([
-    'name' => $request->name,
-    'email' => $email,
-    'password' => Hash::make($passwordPlain),
-    'rt' => $rt,
-    'rw' => $rw,
-    'alamat' => $request->alamat,
-    'kontak' => $request->kontak,
-    'pengelola_air_id' => $request->pengelola_air_id,
-]);
-
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $email,
+            'password' => Hash::make($passwordPlain),
+            'rt' => $rt,
+            'rw' => $rw,
+            'alamat' => $request->alamat,
+            'kontak' => $request->kontak,
+            'pengelola_air_id' => $request->pengelola_air_id,
+        ]);
     
         $user->assignRole('user');
     
@@ -95,7 +94,7 @@ $user = User::create([
             'display_name'  => $user->name . ' - ' . $user->kontak . ' - ' . $email,
         ]);
         
-        $prefix = env('WP_DB_PREFIX', 'wp6b_');
+        $prefix = env('WP_DB_PREFIX', 'wp30_');
 
         DB::connection('wordpress')->table('usermeta')->insert([
             [
@@ -123,8 +122,8 @@ $user = User::create([
     // Auth::login($user);
 
     // return redirect(route('verification.notice', absolute: false));
-    Auth::login($user);
-return redirect()->route('dashboard');
+    // Auth::login($user);
+return redirect()->route('login');
 
 }
 
