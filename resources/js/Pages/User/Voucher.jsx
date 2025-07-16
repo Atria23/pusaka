@@ -149,7 +149,7 @@ export default function Voucher({ vouchers, user }) {
       {/* Voucher List */}
       <div className="px-4 grid grid-cols-1 gap-4 pb-8">
         {paginatedVouchers.map((v) => {
-          const disabled = v.stok <= 0 || user.points < v.nilai_poin;
+          const disabled = v.stok <= 0 || Number(user.points) < Number(v.nilai_poin);
           const buttonLabel = v.stok <= 0
   ? 'Tidak Tersedia'
   : Number(user.points) < Number(v.nilai_poin)
