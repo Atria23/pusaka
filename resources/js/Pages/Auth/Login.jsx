@@ -44,6 +44,17 @@ export default function Login({ canResetPassword }) {
                         <p className="font-utama text-base font-medium text-gray-600 text-center">
                             Halaman Login
                         </p>
+                        <p className="text-sm text-gray-600 text-center bg-yellow-50 border border-yellow-200 rounded-lg px-3 py-2 mt-2">
+                            Mengalami Kendala?{' '}
+                            <a
+                                href="https://wa.me/6287742097918"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-green-700 font-semibold underline hover:text-green-800"
+                            >
+                                Hubungi admin via WhatsApp
+                            </a>
+                        </p>
                     </section>
 
                     <section className="flex flex-col items-center justify-center gap-4 w-full px-4">

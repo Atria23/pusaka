@@ -356,6 +356,17 @@ export default function Register({ pengelolaAirList }) {
                         <p className="font-utama text-base font-medium text-gray-600 text-center">
                             Halaman Registrasi
                         </p>
+                        <p className="text-sm text-gray-600 text-center bg-yellow-50 border border-yellow-200 rounded-lg px-3 py-2 mt-2">
+                            Mengalami Kendala?{' '}
+                            <a
+                                href="https://wa.me/6287742097918"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-green-700 font-semibold underline hover:text-green-800"
+                            >
+                                Hubungi admin via WhatsApp
+                            </a>
+                        </p>
                     </section>
 
                     {/* section form register */}
@@ -370,7 +381,7 @@ export default function Register({ pengelolaAirList }) {
                                             type="text"
                                             name="name"
                                             value={data.name}
-                                            placeholder="Contoh: Bapak Joko"
+                                            placeholder="Contoh: Joko"
                                             onChange={(e) => setData('name', e.target.value)}
                                             className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400"
                                             required
