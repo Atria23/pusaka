@@ -214,7 +214,8 @@ export default function AccountSettings({ user }) {
                                 <input
                                     type="text"
                                     value={data.kontak}
-                                    onChange={(e) => setData('kontak', e.target.value)}
+                                    readOnly
+                                    // onChange={(e) => setData('kontak', e.target.value)}
                                     placeholder="No. HP / WA"
                                     className="w-full h-9 rounded-lg bg-neutral-100 border-2 border-gray-200 text-sm px-3"
                                 />
