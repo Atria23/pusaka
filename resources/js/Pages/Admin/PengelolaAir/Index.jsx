@@ -30,7 +30,7 @@ export default function PengelolaAirIndex() {
     return (
         <>
             <Head title="Pengelola Air" />
-            <div className="mx-auto w-full max-w-[500px] min-h-screen bg-white">
+            <div className="mx-auto w-full min-h-screen bg-white">
                 {/* Header */}
                 <div className="sticky top-0 z-10 bg-main text-white px-4 py-3 flex items-center justify-between shadow-md">
                     <div className="flex items-center gap-2">

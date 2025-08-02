@@ -362,9 +362,9 @@ export default function Penukaran({ penukaran }) {
     };
 
     return (
-        <div className="mx-auto w-full max-w-[500px] min-h-screen bg-white">
+        <div className="mx-auto w-full min-h-screen bg-white">
             {/* Header */}
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
                 <div className="flex items-center px-4 py-2 space-x-4 bg-main">
                     <button onClick={() => window.history.back()} className="w-6 h-6 shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">

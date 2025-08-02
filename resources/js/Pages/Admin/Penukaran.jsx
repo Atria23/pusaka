@@ -133,9 +133,9 @@ export default function Penukaran({ penukarans }) {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-[500px] min-h-screen bg-white">
+      <div className="mx-auto w-full min-h-screen bg-white">
         {/* Header */}
-        <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
           <div className="w-full h-max flex flex-row space-x-4 justify-start items-center px-4 py-2 bg-main">
             <div className="w-full h-max flex flex-row space-x-4 items-center justify-start">
               <button

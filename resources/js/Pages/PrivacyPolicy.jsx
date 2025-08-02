@@ -6,9 +6,9 @@ const PrivacyPolicy = () => {
     return (
         <>
             <Head title="Privacy Policy" />
-            <div className="mx-auto w-full max-w-[500px] min-h-screen">
+            <div className="mx-auto w-full min-h-screen">
                 {/* fixed position */}
-                <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+                <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
                     {/* Header */}
                     <div className="w-full h-max flex flex-row space-x-4 justify-start items-center px-4 py-2 bg-main">
                         <div className="w-full h-max flex flex-row space-x-4 items-center justify-start">
@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
                 <section className="w-full flex flex-col space-y-2 pt-[51px] p-4">
                     <div className="w-full flex flex-col space-y-2 items-start justify-start">
                         <p className="font-utama text-sm text-justify text-gray-500">
-                        Dengan menggunakan layanan Bank Sampah Pusaka, Anda setuju dengan kebijakan yang berlaku berikut ini.
+                            Dengan menggunakan layanan Bank Sampah Pusaka, Anda setuju dengan kebijakan yang berlaku berikut ini.
                         </p>
 
                         <ol className="list-[upper-alpha] list-outside pl-4 space-y-3 text-sm font-utama text-gray-500">

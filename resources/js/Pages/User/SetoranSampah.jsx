@@ -23,9 +23,9 @@ export default function UserSampahIndex() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[500px] max-h-[892px] min-h-screen bg-white">
+    <div className="mx-auto w-full max-h-[892px] min-h-screen bg-white">
       {/* Header */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
         <div className="w-full flex flex-row justify-between items-center px-4 py-2 bg-main">
           {/* Kiri: Tombol Back + Judul */}
           <div className="flex flex-row items-center space-x-4">
@@ -81,9 +81,9 @@ export default function UserSampahIndex() {
                 <div className="p-4">
                   <h3 className="text-lg font-semibold text-main mb-1">{s.nama_sampah}</h3>
                   <p className="text-gray-600 text-sm mb-1">
-<span className="font-medium text-gray-800">
-  Harga: Rp {s.harga_per_kg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} /kg
-</span>
+                    <span className="font-medium text-gray-800">
+                      Harga: Rp {s.harga_per_kg.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} /kg
+                    </span>
                   </p>
                   <p className="text-sm text-gray-700 font-medium">
                     Poin Yang Didapatkan: <span className="text-main font-bold">{formatRupiah(estimasiPoin)}</span>

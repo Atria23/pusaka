@@ -5,9 +5,9 @@ export default function Dashboard({ title }) {
     return (
         <>
             <Head title={title} />
-            <div className="max-w-[500px] mx-auto min-h-screen bg-white">
+            <div className="mx-auto min-h-screen bg-white">
                 {/* Header */}
-                <div className="fixed top-0 z-10 w-full max-w-[500px] bg-main text-white px-4 py-3">
+                <div className="fixed top-0 z-10 w-full bg-main text-white px-4 py-3">
                     <div className="flex items-center justify-between">
                         <h1 className="text-lg font-bold">Dashboard Admin</h1>
                         <a href={route('user.dashboard')}>
@@ -24,7 +24,7 @@ export default function Dashboard({ title }) {
 
                 {/* Menu Section */}
                 <div className="pt-[60px] px-4 pb-8">
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
                         <MenuItem
                             href="/admin/sampah"
                             icon={

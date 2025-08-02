@@ -26,9 +26,9 @@ function Profile({ user }) {
     return (
         <>
             <Head title="Profile" />
-            <div className="mx-auto w-full max-w-[500px] flex flex-col min-h-screen pb-16">
+            <div className="mx-auto w-full flex flex-col min-h-screen pb-16">
                 {/* Header */}
-                <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+                <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
                     <div className="w-full flex flex-row justify-between items-center px-4 py-2 bg-main">
                         {/* Kiri: Tombol Back + Judul */}
                         <div className="flex flex-row items-center space-x-4">
@@ -53,8 +53,8 @@ function Profile({ user }) {
                     </div>
                 </div>
 
-            {/* SPACER untuk menghindari overlap header */}
-            <div className="h-[30px]" />
+                {/* SPACER untuk menghindari overlap header */}
+                <div className="h-[30px]" />
 
                 <div className="w-full w-max-[500px] flex flex-col space-y-5 mt-10 p-4 bg-main-white">
                     <div className="w-full flex flex-col space-y-3">

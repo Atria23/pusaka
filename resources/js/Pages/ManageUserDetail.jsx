@@ -29,8 +29,8 @@ export default function Edit() {
     return (
         <>
             <Head title="Manage User Detail" />
-            <div className="mx-auto w-full max-w-[500px] min-h-screen text-white">
-                <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+            <div className="mx-auto w-full min-h-screen text-white">
+                <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
                     <div className="flex items-center space-x-4 px-4 py-2 text-white">
                         <button onClick={() => window.history.back()} className="w-6 h-6">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">

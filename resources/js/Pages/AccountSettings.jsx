@@ -39,11 +39,11 @@ export default function AccountSettings({ user }) {
     const isFormValid = data.name;
 
     return (
-        <div className="mx-auto w-full max-w-[500px] min-h-screen md:h-screen">
+        <div className="mx-auto w-full min-h-screen md:h-screen">
             <div className="min-h-screen md:min-h-full bg-white px-4 py-6 sm:px-6">
 
                 {/* Header */}
-                <header className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+                <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
                     <div className="w-full h-max flex flex-row items-center px-4 py-2 space-x-4">
                         <button className="shrink-0 w-6 h-6" onClick={() => window.history.back()}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">
@@ -115,31 +115,31 @@ export default function AccountSettings({ user }) {
                                     </a>
                                 )} */}
                                 <div className="w-full h-9 flex items-center rounded-lg bg-neutral-100 border-2 border-gray-200 relative">
-  <input
-    type="email"
-    value={user.email}
-    readOnly
-    className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400 pr-24" // kasih padding kanan lebih supaya link muat
-  />
-  <div className="absolute right-3 flex items-center h-full">
-    {user.email_verified_at ? (
-      <svg className="w-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-        <path
-          fillRule="evenodd"
-          d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ) : (
-      <a
-        href="/email/verify"
-        className="text-main hover:text-main_dark text-xs font-medium underline whitespace-nowrap"
-      >
-        Verifikasi
-      </a>
-    )}
-  </div>
-</div>
+                                    <input
+                                        type="email"
+                                        value={user.email}
+                                        readOnly
+                                        className="bg-transparent text-sm border-none w-full focus:ring-0 focus:outline-none placeholder-gray-400 pr-24" // kasih padding kanan lebih supaya link muat
+                                    />
+                                    <div className="absolute right-3 flex items-center h-full">
+                                        {user.email_verified_at ? (
+                                            <svg className="w-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        ) : (
+                                            <a
+                                                href="/email/verify"
+                                                className="text-main hover:text-main_dark text-xs font-medium underline whitespace-nowrap"
+                                            >
+                                                Verifikasi
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -164,12 +164,12 @@ export default function AccountSettings({ user }) {
                                     value={data.rt}
                                     onChange={(e) => {
                                         let val = e.target.value;
-                            
+
                                         // Izinkan hanya angka dan maksimal 2 digit
                                         if (/^\d{0,2}$/.test(val)) {
                                             setData('rt', val);
                                         }
-                                    }}                                 
+                                    }}
                                     placeholder="Nomor RT"
                                     className="w-full h-9 rounded-lg bg-neutral-100 border-2 border-gray-200 text-sm px-3"
                                 />
@@ -184,12 +184,12 @@ export default function AccountSettings({ user }) {
                                     value={data.rw}
                                     onChange={(e) => {
                                         let val = e.target.value;
-                            
+
                                         // Izinkan hanya angka dan maksimal 2 digit
                                         if (/^\d{0,2}$/.test(val)) {
                                             setData('rw', val);
                                         }
-                                    }}                              
+                                    }}
                                     placeholder="Nomor RW"
                                     className="w-full h-9 rounded-lg bg-neutral-100 border-2 border-gray-200 text-sm px-3"
                                 />

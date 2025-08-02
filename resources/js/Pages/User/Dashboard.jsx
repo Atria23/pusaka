@@ -26,9 +26,9 @@ function Dashboard({ user }) {
   return (
     <>
       <Head title="Dashboard" />
-      <div className="mx-auto w-full max-w-[500px] max-h-[892px] min-h-screen">
+      <div className="mx-auto w-full max-h-[892px] min-h-screen">
         {/* Header */}
-        <section className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] z-10 h-max flex flex-row items-center justify-center p-4 bg-main">
+        <section className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 h-max flex flex-row items-center justify-center p-4 bg-main">
           <div className="w-full h-full flex flex-col my-auto items-start">
             <div className="font-utama text-white font-bold text-lg">
               Halo,
@@ -44,7 +44,7 @@ function Dashboard({ user }) {
         {/* section saldo */}
         <section className="w-full h-max flex flex-col space-y-4 items-center justify-center px-4 pt-[105px] pb-4 rounded-b-[20px] bg-white">
           {/* card */}
-          <div className="w-full max-w-[450px] flex flex-col space-y-3 items-start justify-start p-4 rounded-[20px] bg-main-white">
+          <div className="w-full flex flex-col space-y-3 items-start justify-start p-4 rounded-[20px] bg-main-white">
             {/* saldo */}
             <div className="w-max h-max flex flex-col">
               <p className="w-full h-max font-utama font-semibold text-sm text-left flex items-center">Poin</p>
@@ -121,7 +121,7 @@ function Dashboard({ user }) {
         </section>
 
         {/* konten utama */}
-        <div className="w-full max-w-[500px] flex flex-col space-y-7 pt-7 pb-6">
+        <div className="w-full flex flex-col space-y-7 pt-7 pb-6">
           {/* banner */}
           <section className="w-full px-6">
             <BannerSlider />
@@ -129,7 +129,7 @@ function Dashboard({ user }) {
 
           {/* section kategori */}
           <section className="w-full flex flex-col space-y-4 items-center justify-start">
-            <div className="w-full max-w-[450px] grid grid-cols-3 gap-x-6 gap-y-4">
+            <div className="w-full grid grid-cols-3 gap-x-6 gap-y-4">
               {[
                 {
                   name: 'Botol Pet',

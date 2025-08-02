@@ -64,11 +64,11 @@ export default function LaporanAdmin() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-[500px] min-h-screen bg-gray-50">
+        <div className="mx-auto w-full min-h-screen bg-gray-50">
             <Head title="Laporan Admin" />
 
             {/* Header */}
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
                 <div className="w-full flex flex-row space-x-4 justify-start items-center px-4 py-2 bg-main">
                     <div className="w-full flex flex-row space-x-4 items-center justify-start">
                         <button className="shrink-0 w-6 h-6" onClick={() => window.history.back()}>

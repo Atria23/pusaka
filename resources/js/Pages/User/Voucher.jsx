@@ -68,9 +68,9 @@ export default function Voucher({ vouchers, user }) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[500px] min-h-screen bg-gray-100">
+    <div className="mx-auto w-full min-h-screen bg-gray-100">
       {/* Header (fixed) */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
         <div className="w-full flex flex-row justify-between items-center px-4 py-2 bg-main">
           {/* Kiri: Tombol Back + Judul */}
           <div className="flex flex-row items-center space-x-4">
@@ -151,10 +151,10 @@ export default function Voucher({ vouchers, user }) {
         {paginatedVouchers.map((v) => {
           const disabled = v.stok <= 0 || Number(user.points) < Number(v.nilai_poin);
           const buttonLabel = v.stok <= 0
-  ? 'Tidak Tersedia'
-  : Number(user.points) < Number(v.nilai_poin)
-    ? 'Poin Kurang'
-    : 'Beli Voucher';
+            ? 'Tidak Tersedia'
+            : Number(user.points) < Number(v.nilai_poin)
+              ? 'Poin Kurang'
+              : 'Beli Voucher';
 
           const buttonColor = disabled ? 'bg-gray-400' : 'bg-main';
 

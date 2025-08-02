@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function ManageUserView({ user }) {
   return (
-    <div className="mx-auto w-full max-w-[500px] min-h-screen md:h-screen">
+    <div className="mx-auto w-full min-h-screen md:h-screen">
       <div className="min-h-screen md:min-h-full bg-white px-4 py-6 sm:px-6">
 
         {/* Header */}
-        <header className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-10 bg-main">
+        <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-10 bg-main">
           <div className="w-full h-max flex flex-row items-center px-4 py-2 space-x-4">
             <button className="shrink-0 w-6 h-6" onClick={() => window.history.back()}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">

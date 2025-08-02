@@ -51,9 +51,9 @@ export default function GaleriProduk({ produkOlahan }) {
     };
 
     return (
-        <div className="mx-auto w-full max-w-[500px] min-h-screen bg-main-white">
+        <div className="mx-auto w-full min-h-screen bg-main-white">
             {/* HEADER */}
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
                 <div className="w-full flex flex-row justify-between items-center px-4 py-2 bg-main">
                     {/* Kiri: Tombol Back + Judul */}
                     <div className="flex flex-row items-center space-x-4">
@@ -225,7 +225,7 @@ export default function GaleriProduk({ produkOlahan }) {
 
             {/* PAGINATION */}
             {totalPages > 1 && (
-                <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[500px] bg-white border-t border-gray-200 py-2 px-4 flex justify-center space-x-2">
+                <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full bg-white border-t border-gray-200 py-2 px-4 flex justify-center space-x-2">
                     <button
                         onClick={() => goToPage(currentPage - 1)}
                         disabled={currentPage === 1}

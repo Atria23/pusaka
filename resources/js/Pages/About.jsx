@@ -37,11 +37,171 @@ export default function About() {
     ];
 
     return (
+        // <>
+        //     <Head title="Selamat Datang" />
+        //     <div className="bg-[#ffffff] flex flex-row justify-center w-full">
+        //         <div className="bg-neutralwhite w-full relative">
+        //             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
+        //                 <div className="w-full flex flex-row space-x-4 justify-start items-center px-4 py-2">
+        //                     <div className="flex flex-row space-x-4 items-center justify-start w-full">
+        //                         <button className="shrink-0 w-6 h-6" onClick={() => window.history.back()}>
+        //                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">
+        //                                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+        //                             </svg>
+        //                         </button>
+        //                         <div className="font-utama text-white font-bold text-lg">Tentang Pusaka</div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+
+        //             {/* Hero Section */}
+        //             <div className="w-full mt-8">
+        //                 <div className="flex flex-col w-full items-start justify-center">
+        //                     <div className="flex flex-col justify-center gap-[50px] px-[30px] py-12 w-full bg-neutralsilver items-center">
+
+        //                         <div className="flex flex-col items-start gap-5 w-full max-w-[100%]">
+        //                             <div className="w-full font-semibold text-[#a8d5ba] text-3xl text-center leading-[45px]">
+        //                                 <div className='w-full flex items-center justify-center'>
+        //                                     <img className="w-16 h-16" alt="Company logo" src="/storage/logo.png" />
+
+        //                                 </div>
+
+        //                                 <span className="font-semibold text-3xl leading-[48px] text-main block mt-1">
+        //                                     Selamat Datang Di
+        //                                 </span>
+        //                                 <span className="font-bold text-main text-4xl leading-[24px] block">
+        //                                     Bank Sampah Digital
+        //                                 </span>
+        //                             </div>
+
+        //                             <div className="w-full text-[#333333] text-md text-center leading-snug">
+        //                                 Pusaka hadir sebagai solusi inovatif untuk mengelola sampah dengan lebih mudah dan mengubahnya menjadi nilai ekonomi.
+        //                             </div>
+        //                         </div>
+
+        //                         <Link href={route('login')}>
+        //                             <button
+        //                                 className="flex items-center justify-center gap-2 px-8 py-4 bg-main hover:bg-main_dark border-2 border-main font-extrabold text-sm rounded-xl hover:bg-main text-white transition-all duration-300"
+        //                             >
+        //                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-7 h-7" viewBox="0 0 16 16">
+        //                                     <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.5.5 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244z" />
+        //                                 </svg>
+        //                                 <span>IKUTI PROGRAM</span>
+        //                             </button>
+        //                         </Link>
+        //                     </div>
+
+        //                     {/* Banner */}
+        //                     <div className="relative w-full h-[323px] overflow-hidden">
+        //                         <div className="relative w-full h-full">
+        //                             <img
+        //                                 className="absolute w-full h-full top-0 left-0 object-cover"
+        //                                 alt="banner welcome"
+        //                                 src="/storage/sampah.png"
+        //                             />
+        //                             <div className="absolute w-full h-full bottom-0 left-0">
+        //                                 <div className="relative w-full h-full bg-gradient-to-t from-white to-white/0" />
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+
+        //             {/* Benefit Section */}
+        //             <section className="flex flex-col w-full items-center gap-5 px-[30px] py-12 relative bg-neutralwhite">
+        //                 <header className="flex flex-col items-start gap-5 w-full">
+        //                     <div className="flex flex-col items-center gap-12 w-full">
+        //                         <div className="flex flex-col items-start gap-2 w-full">
+        //                             <h3 className="text-main w-full text-base text-center font-semibold">
+        //                                 KENAPA BERGABUNG DENGAN KAMI?
+        //                             </h3>
+        //                             <h2 className="text-gray-900 w-full text-3xl text-center font-semibold">
+        //                                 Keuntungan Bergabung
+        //                             </h2>
+        //                         </div>
+        //                     </div>
+        //                 </header>
+
+        //                 <div className="flex flex-col items-start gap-5 w-full">
+        //                     {benefits.map((benefit, index) => (
+        //                         <div
+        //                             key={index}
+        //                             className="flex flex-col items-center gap-5 px-5 py-[35px] w-full border-2 border-gray-200 shadow-md rounded-xl"
+        //                         >
+        //                             <div className="w-12 h-12 bg-main rounded-full flex items-center justify-center">
+        //                                 {benefit.icon}
+        //                             </div>
+        //                             <div className="flex flex-col items-center gap-2 w-full">
+        //                                 <h4 className="text-gray-900 text-xl text-center font-bold">
+        //                                     {benefit.title}
+        //                                 </h4>
+        //                                 <p className="text-gray-600 text-sm text-center leading-snug">
+        //                                     {benefit.description}
+        //                                 </p>
+        //                             </div>
+        //                         </div>
+        //                     ))}
+        //                 </div>
+        //             </section>
+
+        //             {/* Footer */}
+        //             <footer className="flex flex-col w-full items-center justify-center gap-6 px-4 py-8 bg-main_dark">
+        //                 <div className="flex flex-col items-center justify-center gap-4 max-w-xs w-full text-center">
+        //                     <img
+        //                         className="w-44 py-4 h-auto object-contain"
+        //                         alt="Muvausa Store Text White Logo"
+        //                         src="/storage/logoTulisanWhite_no_bg.png"
+        //                     />
+
+        //                     <p className=" [font-family:'Inter-Regular',Helvetica] font-normal text-white text-base leading-relaxed break-words">
+        //                         Bersama, kita wujudkan lingkungan bersih dan berdaya. Kelola sampah dengan bijak, ciptakan masa depan yang lebih hijau.                            </p>
+        //                 </div>
+
+        //                 <div className="w-full border-t-2 border-white/40">
+        //                     <span className="block h-2 invisible">spacer</span>
+        //                 </div>
+
+        //                 <div className="flex flex-col items-center justify-center gap-4 w-full text-center">
+        //                     <p className="text-white text-base leading-snug px-2">
+        //                         Copyright © 2025 Pusaka. All rights reserved.
+        //                     </p>
+
+        //                     <div className="flex items-center gap-4">
+        //                         <a href="wa.me/6288227397243">
+        //                             <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
+        //                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-whatsapp" viewBox="0 0 16 16">
+        //                                     <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+        //                                 </svg>
+        //                             </div>
+        //                         </a>
+
+        //                         <a href="https://www.instagram.com/muvausastore/">
+        //                             <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
+        //                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+        //                                     <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+        //                                 </svg>
+        //                             </div>
+        //                         </a>
+
+        //                         <a href="https://x.com/muvausastore">
+        //                             <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
+        //                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-twitter-x" viewBox="0 0 16 16">
+        //                                     <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+        //                                 </svg>
+        //                             </div>
+        //                         </a>
+        //                     </div>
+        //                 </div>
+        //             </footer>
+
+        //         </div>
+        //     </div>
+        // </>
         <>
             <Head title="Selamat Datang" />
-            <div className="bg-[#ffffff] flex flex-row justify-center w-full">
-                <div className="bg-neutralwhite w-full max-w-[500px] relative">
-                    <div className="fixed top-0 left-1/2 -translate-x-1/2 max-w-[500px] w-full z-20 bg-main">
+            <div className="bg-white flex justify-center w-full">
+                <div className="w-full">
+                    <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full z-20 bg-main">
                         <div className="w-full flex flex-row space-x-4 justify-start items-center px-4 py-2">
                             <div className="flex flex-row space-x-4 items-center justify-start w-full">
                                 <button className="shrink-0 w-6 h-6" onClick={() => window.history.back()}>
@@ -55,34 +215,26 @@ export default function About() {
                     </div>
 
                     {/* Hero Section */}
-                    <div className="w-full mt-8">
-                        <div className="flex flex-col w-full items-start justify-center">
-                            <div className="flex flex-col justify-center gap-[50px] px-[30px] py-12 w-full bg-neutralsilver items-center">
+                    <div className="w-full bg-white">
+                        <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 md:px-10 py-12 gap-10">
 
-                                <div className="flex flex-col items-start gap-5 w-full max-w-[100%]">
-                                    <div className="w-full font-semibold text-[#a8d5ba] text-3xl text-center leading-[45px]">
-                                        <div className='w-full flex items-center justify-center'>
-                                            <img className="w-16 h-16" alt="Company logo" src="/storage/logo.png" />
-
-                                        </div>
-
-                                        <span className="font-semibold text-3xl leading-[48px] text-main block mt-1">
-                                            Selamat Datang Di
-                                        </span>
-                                        <span className="font-bold text-main text-4xl leading-[24px] block">
-                                            Bank Sampah Digital
-                                        </span>
-                                    </div>
-
-                                    <div className="w-full text-[#333333] text-md text-center leading-snug">
-                                        Pusaka hadir sebagai solusi inovatif untuk mengelola sampah dengan lebih mudah dan mengubahnya menjadi nilai ekonomi.
-                                    </div>
+                            {/* Text Content */}
+                            <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                                <div>
+                                    <h1 className="mt-4 text-main text-2xl md:text-4xl font-semibold leading-snug">
+                                        Selamat Datang Di
+                                    </h1>
+                                    <h2 className="text-main text-3xl md:text-5xl font-bold leading-tight mt-2">
+                                        Bank Sampah Digital
+                                    </h2>
                                 </div>
 
-                                <Link href={route('login')}>
-                                    <button
-                                        className="flex items-center justify-center gap-2 px-8 py-4 bg-main hover:bg-main_dark border-2 border-main font-extrabold text-sm rounded-xl hover:bg-main text-white transition-all duration-300"
-                                    >
+                                <p className="text-[#333333] text-md md:text-lg leading-snug max-w-xl">
+                                    Pusaka hadir sebagai solusi inovatif untuk mengelola sampah dengan lebih mudah dan mengubahnya menjadi nilai ekonomi.
+                                </p>
+
+                                <Link href={route("login")}>
+                                    <button className="flex items-center justify-center gap-2 px-8 py-4 bg-main hover:bg-main_dark border-2 border-main font-extrabold text-sm rounded-xl text-white transition-all duration-300">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-7 h-7" viewBox="0 0 16 16">
                                             <path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.5.5 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244z" />
                                         </svg>
@@ -91,108 +243,99 @@ export default function About() {
                                 </Link>
                             </div>
 
-                            {/* Banner */}
-                            <div className="relative w-full h-[323px] overflow-hidden">
-                                <div className="relative w-full h-full">
+                            {/* Image Content */}
+                            <div className="w-full md:w-1/2">
+                                <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden rounded-xl shadow">
                                     <img
-                                        className="absolute w-full h-full top-0 left-0 object-cover"
-                                        alt="banner welcome"
                                         src="/storage/sampah.png"
+                                        alt="banner welcome"
+                                        className="absolute w-full h-full object-cover top-0 left-0"
                                     />
-                                    <div className="absolute w-full h-full bottom-0 left-0">
-                                        <div className="relative w-full h-full bg-gradient-to-t from-white to-white/0" />
-                                    </div>
+                                    <div className="absolute w-full h-full bg-gradient-to-t from-white via-white/80 to-white/0"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
                     {/* Benefit Section */}
-                    <section className="flex flex-col w-full max-w-[500px] items-center gap-5 px-[30px] py-12 relative bg-neutralwhite">
-                        <header className="flex flex-col items-start gap-5 w-full">
-                            <div className="flex flex-col items-center gap-12 w-full">
-                                <div className="flex flex-col items-start gap-2 w-full">
-                                    <h3 className="text-main w-full text-base text-center font-semibold">
-                                        KENAPA BERGABUNG DENGAN KAMI?
-                                    </h3>
-                                    <h2 className="text-gray-900 w-full text-3xl text-center font-semibold">
-                                        Keuntungan Bergabung
-                                    </h2>
-                                </div>
-                            </div>
+                    <section className="flex flex-col w-full items-center gap-5 px-6 md:px-10 py-12 relative bg-neutralwhite">
+                        <header className="flex flex-col items-center gap-5 w-full max-w-3xl">
+                            <h3 className="text-main text-base text-center font-semibold">
+                                KENAPA BERGABUNG DENGAN KAMI?
+                            </h3>
+                            <h2 className="text-gray-900 text-3xl text-center font-semibold">
+                                Keuntungan Bergabung
+                            </h2>
                         </header>
 
-                        <div className="flex flex-col items-start gap-5 w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
                             {benefits.map((benefit, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col items-center gap-5 px-5 py-[35px] w-full border-2 border-gray-200 shadow-md rounded-xl"
+                                    className="flex flex-col items-center gap-5 px-5 py-8 border-2 border-gray-200 shadow-md rounded-xl bg-white"
                                 >
-                                    <div className="w-12 h-12 bg-main rounded-full flex items-center justify-center">
+                                    <div className="w-12 h-12 bg-main rounded-full flex items-center justify-center text-white">
                                         {benefit.icon}
                                     </div>
-                                    <div className="flex flex-col items-center gap-2 w-full">
-                                        <h4 className="text-gray-900 text-xl text-center font-bold">
-                                            {benefit.title}
-                                        </h4>
-                                        <p className="text-gray-600 text-sm text-center leading-snug">
-                                            {benefit.description}
-                                        </p>
+                                    <div className="flex flex-col items-center gap-2 text-center">
+                                        <h4 className="text-gray-900 text-xl font-bold">{benefit.title}</h4>
+                                        <p className="text-gray-600 text-sm leading-snug">{benefit.description}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </section>
 
+
                     {/* Footer */}
-                    <footer className="flex flex-col w-full items-center justify-center gap-6 px-4 py-8 bg-main_dark">
-                        <div className="flex flex-col items-center justify-center gap-4 max-w-xs w-full text-center">
-                            <img
-                                className="w-44 py-4 h-auto object-contain"
-                                alt="Muvausa Store Text White Logo"
-                                src="/storage/logoTulisanWhite_no_bg.png"
-                            />
+                    <footer className="w-full bg-main_dark px-4 py-8">
+                        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
 
-                            <p className=" [font-family:'Inter-Regular',Helvetica] font-normal text-white text-base leading-relaxed break-words">
-                                Bersama, kita wujudkan lingkungan bersih dan berdaya. Kelola sampah dengan bijak, ciptakan masa depan yang lebih hijau.                            </p>
-                        </div>
+                            {/* Logo + Deskripsi */}
+                            <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-md gap-4">
+                                <img
+                                    className="w-44 h-auto object-contain"
+                                    alt="Muvausa Store Text White Logo"
+                                    src="/storage/logoTulisanWhite_no_bg.png"
+                                />
+                                <p className="text-white text-base leading-relaxed">
+                                    Bersama, kita wujudkan lingkungan bersih dan berdaya. Kelola sampah dengan bijak, ciptakan masa depan yang lebih hijau.
+                                </p>
+                            </div>
 
-                        <div className="w-full border-t-2 border-white/40">
-                            <span className="block h-2 invisible">spacer</span>
-                        </div>
-
-                        <div className="flex flex-col items-center justify-center gap-4 w-full text-center">
-                            <p className="text-white text-base leading-snug px-2">
-                                Copyright © 2025 Pusaka. All rights reserved.
-                            </p>
-
-                            <div className="flex items-center gap-4">
-                                <a href="wa.me/6288227397243">
-                                    <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-whatsapp" viewBox="0 0 16 16">
-                                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-                                        </svg>
-                                    </div>
-                                </a>
-
-                                <a href="https://www.instagram.com/muvausastore/">
-                                    <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
-                                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
-                                        </svg>
-                                    </div>
-                                </a>
-
-                                <a href="https://x.com/muvausastore">
-                                    <div className="flex w-[39.73px] h-[39.73px] items-center justify-center bg-white rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-twitter-x" viewBox="0 0 16 16">
-                                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                                        </svg>
-                                    </div>
-                                </a>
+                            {/* Sosial Media + Copyright */}
+                            <div className="flex flex-col items-center md:items-end text-center md:text-right gap-4 w-full">
+                                <div className="flex items-center gap-4">
+                                    <a href="https://wa.me/6287742097918" aria-label="Whatsapp">
+                                        <div className="flex w-10 h-10 items-center justify-center bg-white rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-whatsapp" viewBox="0 0 16 16">
+                                                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.instagram.com/ppkormawa.asysyifa25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram">
+                                        <div className="flex w-10 h-10 items-center justify-center bg-white rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+                                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <a href="#" aria-label="Twitter X">
+                                        <div className="flex w-10 h-10 items-center justify-center bg-white rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-twitter-x" viewBox="0 0 16 16">
+                                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                                <p className="text-white text-sm leading-snug">
+                                    Copyright © 2025 Pusaka. All rights reserved.
+                                </p>
                             </div>
                         </div>
                     </footer>
+
 
                 </div>
             </div>
