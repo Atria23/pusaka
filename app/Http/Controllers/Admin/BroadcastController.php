@@ -7,6 +7,8 @@ use App\Models\BroadcastMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Mail\BroadcastMail;
+use Illuminate\Support\Facades\Mail;
 
 class BroadcastController extends Controller
 {
@@ -15,32 +17,35 @@ class BroadcastController extends Controller
         return Inertia::render('Admin/Broadcast/Create');
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'type' => 'required|in:email,sms,both',
-            'subject' => 'nullable|string|max:255',
-            'message' => 'required|string',
-        ]);
+    
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'type' => 'required|in:email,sms,both',
+        'subject' => 'nullable|string|max:255',
+        'message' => 'required|string',
+    ]);
 
-        $broadcast = BroadcastMessage::create($validated);
+    $broadcast = BroadcastMessage::create($validated);
+    $users = User::all();
 
-        $users = User::all();
-
-        foreach ($users as $user) {
-            if (in_array($validated['type'], ['email', 'both']) && $user->email) {
-                // Simulasi kirim email
-                \Log::info("Sending email to {$user->email}: {$validated['subject']} - {$validated['message']}");
-            }
-
-            if (in_array($validated['type'], ['sms', 'both']) && $user->phone_number) {
-                // Simulasi kirim SMS
-                \Log::info("Sending SMS to {$user->phone_number}: {$validated['message']}");
-            }
+    foreach ($users as $user) {
+        if (in_array($validated['type'], ['email', 'both']) && $user->email) {
+            Mail::to($user->email)->send(new BroadcastMail(
+                $validated['subject'] ?? 'Informasi dari Bank Sampah',
+                $validated['message']
+            ));
         }
 
-        return redirect()->route('admin.broadcast.create')->with('success', 'Pesan berhasil dikirim!');
+        if (in_array($validated['type'], ['sms', 'both']) && $user->phone_number) {
+            // Masih simulasi kirim SMS
+            \Log::info("Sending SMS to {$user->phone_number}: {$validated['message']}");
+        }
     }
+
+    return redirect()->route('admin.broadcast.create')->with('success', 'Pesan berhasil dikirim!');
+}
+
 
     public function test(Request $request)
 {
@@ -51,16 +56,17 @@ class BroadcastController extends Controller
     ]);
 
     $adminEmail = config('mail.admin_email');
-    $adminPhone = config('mail.admin_phone'); // Tambahkan jika perlu SMS ke admin juga
+    $adminPhone = config('mail.admin_phone');
 
     if (in_array($validated['type'], ['email', 'both']) && $adminEmail) {
-        \Log::info("=== [TEST EMAIL] ===");
-        \Log::info("Sending email to {$adminEmail}: {$validated['subject']} - {$validated['message']}");
+        Mail::to($adminEmail)->send(new BroadcastMail(
+            $validated['subject'] ?? '[TEST] Informasi Broadcast',
+            $validated['message']
+        ));
     }
 
     if (in_array($validated['type'], ['sms', 'both']) && $adminPhone) {
-        \Log::info("=== [TEST SMS] ===");
-        \Log::info("Sending SMS to {$adminPhone}: {$validated['message']}");
+        \Log::info("[TEST SMS] Kirim ke {$adminPhone}: {$validated['message']}");
     }
 
     return redirect()->route('admin.broadcast.create')->with('success', 'Test berhasil dikirim ke admin!');
