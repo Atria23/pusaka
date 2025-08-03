@@ -24,27 +24,44 @@ public function store(Request $request)
         'type' => 'required|in:email,sms,both',
         'subject' => 'nullable|string|max:255',
         'message' => 'required|string',
+        'test_mode' => 'nullable|boolean', // untuk test email
     ]);
 
+    $isTest = $validated['test_mode'] ?? false;
+    $subject = $validated['subject'] ?? 'Informasi dari Bank Sampah';
+    $message = $validated['message'];
+
+    if ($isTest) {
+        // Kirim hanya ke admin (alamat dari .env)
+        $adminEmail = env('MAIL_ADMIN_ADDRESS');
+        if (in_array($validated['type'], ['email', 'both']) && $adminEmail) {
+            Mail::to($adminEmail)->send(new BroadcastMail($subject, $message));
+        }
+
+        if (in_array($validated['type'], ['sms', 'both'])) {
+            \Log::info("[TEST MODE] Simulasi SMS ke admin: {$message}");
+        }
+
+        return redirect()->route('admin.broadcast.create')->with('success', 'Email/SMS uji coba berhasil dikirim ke admin.');
+    }
+
+    // Mode produksi (broadcast ke semua user)
     $broadcast = BroadcastMessage::create($validated);
     $users = User::all();
 
     foreach ($users as $user) {
         if (in_array($validated['type'], ['email', 'both']) && $user->email) {
-            Mail::to($user->email)->send(new BroadcastMail(
-                $validated['subject'] ?? 'Informasi dari Bank Sampah',
-                $validated['message']
-            ));
+            Mail::to($user->email)->send(new BroadcastMail($subject, $message));
         }
 
         if (in_array($validated['type'], ['sms', 'both']) && $user->phone_number) {
-            // Masih simulasi kirim SMS
-            \Log::info("Sending SMS to {$user->phone_number}: {$validated['message']}");
+            \Log::info("Kirim SMS ke {$user->phone_number}: {$message}");
         }
     }
 
-    return redirect()->route('admin.broadcast.create')->with('success', 'Pesan berhasil dikirim!');
+    return redirect()->route('admin.broadcast.create')->with('success', 'Pesan berhasil dikirim ke semua pengguna!');
 }
+
 
 
     public function test(Request $request)

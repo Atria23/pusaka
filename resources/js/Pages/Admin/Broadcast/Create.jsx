@@ -97,6 +97,17 @@ export default function Create() {
                             >
                                 Kirim Test ke Admin
                             </button>
+
+                            <label className="flex items-center space-x-2">
+  <input
+    type="checkbox"
+    name="test_mode"
+    checked={data.test_mode || false}
+    onChange={(e) => setData('test_mode', e.target.checked)}
+  />
+  <span>Uji coba ke admin saja</span>
+</label>
+
                         </div>
                     </form>
                 </div>
