@@ -370,7 +370,7 @@ export default function Welcome(props) {
                     alt="banner welcome"
                     className="absolute w-full h-full object-cover top-0 left-0"
                   />
-                  <div className="absolute w-full h-full bg-gradient-to-t from-white via-white/80 to-white/0"></div>
+                  <div className="absolute w-full h-full bg-gradient-to-t from-white via-white/30 to-white/0"></div>
                 </div>
               </div>
             </div>

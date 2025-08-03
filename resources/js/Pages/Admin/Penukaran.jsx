@@ -395,8 +395,6 @@ export default function Penukaran({ penukarans }) {
           </div>
         </div>
       )}
-
-
     </>
   );
 }

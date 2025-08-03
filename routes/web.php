@@ -29,6 +29,7 @@ use App\Http\Controllers\Auth\OtpResetRequestController;
 use App\Http\Controllers\Auth\ResetWithOtpController;
 use App\Http\Controllers\PengelolaAirController;
 use App\Http\Controllers\AdminAir\AdminAirDashboardController;
+use App\Http\Controllers\Admin\BroadcastController;
 
 Route::middleware(['admin-air'])->prefix('admin-air')->group(function () {
     Route::get('/dashboard', [AdminAirDashboardController::class, 'index'])->name('admin-air.dashboard');
@@ -87,6 +88,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['admin'])->get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware(['admin-or-super-admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::post('/broadcast/test', [BroadcastController::class, 'test'])->name('broadcast.test');
+
+    Route::get('/broadcast', [BroadcastController::class, 'create'])->name('broadcast.create');
+    Route::post('/broadcast', [BroadcastController::class, 'store'])->name('broadcast.store');
     Route::resource('pengelola-air', PengelolaAirController::class);
     Route::resource('produk-olahan', ProdukOlahanController::class)->except(['show']);
 

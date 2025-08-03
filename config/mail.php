@@ -100,4 +100,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'admin_email' => env('ADMIN_EMAIL', 'defaultadmin@example.com'),
+'admin_phone' => env('ADMIN_PHONE', null),
+
+
 ];
