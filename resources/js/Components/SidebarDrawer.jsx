@@ -4,9 +4,6 @@ import React, { useState } from 'react';
 export default function SidebarDrawer() {
     const { post } = useForm();
 
-    const handleLogout = () => {
-        post("/logout");
-    };
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDrawer = () => {

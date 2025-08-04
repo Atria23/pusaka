@@ -221,8 +221,6 @@ export default function GaleriProduk({ produkOlahan }) {
                 )}
             </div>
 
-
-
             {/* PAGINATION */}
             {totalPages > 1 && (
                 <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full bg-white border-t border-gray-200 py-2 px-4 flex justify-center space-x-2">

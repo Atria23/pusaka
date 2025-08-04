@@ -30,6 +30,8 @@ use App\Http\Controllers\Auth\ResetWithOtpController;
 use App\Http\Controllers\PengelolaAirController;
 use App\Http\Controllers\AdminAir\AdminAirDashboardController;
 use App\Http\Controllers\Admin\BroadcastController;
+// routes/web.php
+use App\Http\Controllers\ChatController;
 
 Route::middleware(['admin-air'])->prefix('admin-air')->group(function () {
     Route::get('/dashboard', [AdminAirDashboardController::class, 'index'])->name('admin-air.dashboard');
@@ -58,6 +60,11 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy');
 
 Route::middleware(['auth'])->group(function () {
+
+// Halaman utama chat (GET)
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+// routes/web.php
+Route::post('/chat/send', [ChatController::class, 'send']);
     Route::get('/galeri-produk', [ProdukOlahanController::class, 'indexUser'])->name('produk-olahan.user.index');
 
     Route::get('vouchers', [VoucherController::class, 'listForUser'])->name('voucher');

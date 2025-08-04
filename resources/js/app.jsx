@@ -31,7 +31,7 @@ createInertiaApp({
         root.render(
             <>
                 <LoadingScreen />
-            <App {...props} />
+                <App {...props} />
             </>
         );
     },
