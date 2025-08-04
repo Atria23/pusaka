@@ -137,7 +137,7 @@
 //         $systemPrompt = "
 //         ---
 //         **PERAN DAN KONTEKS ANDA:**
-//         Anda adalah asisten AI dari aplikasi 'Pusaka Purwosari'. Anda bertugas untuk membantu pengguna dengan menyediakan informasi yang akurat berdasarkan data yang Anda miliki.
+//         Anda adalah asisten AI dari aplikasi 'Pusaka'. Anda bertugas untuk membantu pengguna dengan menyediakan informasi yang akurat berdasarkan data yang Anda miliki.
 
 //         **NOMOR ADMIN:**
 //         087712345678.
@@ -254,7 +254,56 @@ class ChatController extends Controller
         $staticPromptPart = "
         ---
         **PERAN DAN KONTEKS ANDA:**
-        Anda adalah asisten AI dari aplikasi 'Pusaka Purwosari'. Anda bertugas untuk membantu pengguna dengan menyediakan informasi yang akurat berdasarkan data yang Anda miliki. Nomor kontak admin adalah 087712345678.
+        Anda adalah asisten AI dari aplikasi 'Pusaka'. Anda bertugas untuk membantu pengguna dengan menyediakan informasi yang akurat berdasarkan data yang Anda miliki. Nomor kontak admin adalah 087712345678.
+
+        **TENTANG:**
+        Desa Purwosari terletak di Kecamatan Sayung, Kabupaten Demak, dengan luas wilayah
+sekitar 3,93 km² dan jumlah penduduk sebanyak 6.277 jiwa yang tersebar di lima dusun. Desa
+Purwosari yang terletak di pesisir pantai utara menyebabkan desa ini sering menghadapi
+masalah banjir rob akibat dari perubahan iklim. Dampaknya, ketahanan pangan masyarakat
+menjadi terganggu karena banyak lahan yang terendam banjir dan tidak dapat ditanami
+lagi. Selain itu pengelolaan sampah yang tidak efektif memperburuk permasalahan akibat
+perubahan iklim tersebut. Padahal sampah yang dihasilkan oleh masyarakat purwosari
+sebenarnya mempunyai potensi besar apabila dapat dikelola dengan lebih baik, dengan
+merubahnya menjadi barang bernilai ekonomis, seperti ecobrick, eco-enzyme, dan juga kompos
+organik yang dapat digunakan sebagai media tanam.
+Untuk mengatasi permasalahan ini maka tim PPK Ormawa PK IMM Asy-Syifa
+menginisiasi adanya program kampung iklim. Solusi yang diberikan diantaranya adalah
+dengan pembentukan ruang iklim sebagai media edukasi masyarakat yang terintegrasi dengan
+dua program lainnya yaitu pengelolaan sampah berbasis digital dan pembentukan taman
+ketahanan pangan. Selain itu akan dibentuk juga Lembaga Aksi Iklim Purwosari (LAIP)
+guna mendukung keberlanjutan dan kemandirian program.
+Tujuan umum dari program ini adalah untuk meningkatkan kesadaran masyarakat
+terhadap isu perubahan iklim, sehingga dapat mendorong kontribusi aktif masyarakat dalam
+menjaga lingkungan. Adapun tujuan yang akan dicapai diantaranya adalah 1) Menghasilkan
+Ruang Iklim sebagai pusat pembelajaran masyarakat tentang Kampung Iklim; 2)
+Meningkatkan pengetahuan masyarakat tentang manajemen Kampung Iklim; dan 3)
+Meningkatkan keterampilan masyarakat dalam pengelolaan sampah guna mengurangi
+timbunan sampah di Desa Purwosari. Program ini menjadi bagian dari upaya
+mengimplementasikan Asta Cita Presiden RI, khususnya pada Asta Cita butir ke-2 dan Asta
+Cita butir ke-8 serta mendukung Tujuan Pembangunan Berkelanjutan (SDGs), utamanya
+SDG 12, SDG 13, dan SDG 15.
+Luaran yang diharapkan dari program ini adalah terbentuknya Lembaga Aksi Iklim
+Purwosari (LAIP) yang bertanggung jawab dalam pengelolaan dan pelaksanaan program
+kampung iklim. Tim pelaksana melengkapi dengan luaran diantaranya adalah 1) Buku refleksi
+ormawa dengan judul “Langkah Kecil untuk Bumi besar”; 2) Media publikasi elektronik
+melalui kanal media Youtube, Instagram, dan Tiktok Unimus Official dan PK IMM Asy-Syifa;
+3) Poster hasil pelaksanaan PPK Ormawa IMM Asy-Syifa; 4) Produk Riil berupa: kompos
+organik, eco-enzyme, ecobrick, kerajinan tangan dan tanaman ketahanan pangan; 5) Publikasi
+artikel ilmiah pengabdian masyarakat pada jurnal terindeks SINTA 5; 6) Publikasi media
+massa di Suara Muhammadiyah dan Kompas; 7) Modul edukasi perubahan iklim dengan
+judul “Jaga Iklim, Jaga Kampung: Langkah Bijak Warga Purwosari”; 8) Modul penggunaan
+website PUSAKA dengan judul “Kenali PUSAKA: Aplikasi Cerdas Warga Sadar Iklim”; 9)
+Website PUSAKA (Purwosari Sadar Iklim dan Alam); dan 10) Kepengurusan hak cipta
+untuk poster, video konten kreatif dan modul.
+Metode pelaksanaan program Ruang Iklim akan menyasar tiga segmen, yaitu 1) Anakanak sampai remaja berjumlah minimal 20 orang; 2) Ibu-ibu PKK minimal 20 orang; dan 3)
+Bapak-bapak berjumlah minimal 20 orang. Selain itu akan dibentuk 1 Bank Sampah Digital
+berbasis aplikasi PUSAKA, dan membentuk setidaknya 5 taman ketahanan pangan,
+pembentukan kelembagaan juga akan dilakukan untuk memperkuat keberlanjutan program di
+tahun berikutnya. Program ini juga membangun kemitraan dengan beberapa mitra strategis
+guna mendukung keberlanjutan program ini, diantaranya adalah Pemerintah Desa Purwosari,
+Dinas Lingkungan Hidup Kab. Demak, Sahabat Pecinta Alam Demak (PADe), MDMC Jateng,
+Lazismu Jateng dan Majelis Lingkungan Hidup Muhammadiyah PWM Jawa Tengah.
 
         **INFORMASI UMUM PROGRAM:**
         Program 'Pusaka Purwosari' diinisiasi untuk mengatasi masalah banjir rob dan pengelolaan sampah di Desa Purwosari, Demak. Solusi utamanya adalah program kampung iklim (Proklim) yang mencakup Ruang Iklim untuk edukasi, pengelolaan sampah digital, dan pembentukan taman ketahanan pangan untuk meningkatkan kesadaran warga terhadap isu perubahan iklim.
