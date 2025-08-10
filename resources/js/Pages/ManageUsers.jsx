@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Head, usePage, router } from "@inertiajs/react";
+import { Head, usePage, router, Link } from "@inertiajs/react";
 
 export default function UserManagement() {
     const { users } = usePage().props;
@@ -85,6 +85,17 @@ export default function UserManagement() {
                                 Manajemen Pengguna
                             </div>
                         </div>
+                    {/* Plus Icon */}
+                    <Link
+    href={route('manage-users.create')} // Mengarahkan ke route dengan nama 'sampah.index'
+    className="flex items-center w-6 h-6"
+    aria-label="Buka Halaman Sampah" // Baik untuk aksesibilitas
+>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white">
+        <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2m0 18a8 8 0 1 1 8-8 8.01 8.01 0 0 1-8 8" />
+        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z" />
+    </svg>
+</Link>
                     </div>
                     {/* Search & Filter */}
                     <div className="w-full h-max flex flex-col space-y-4 items-center justify-start p-4 bg-white shadow-lg">
@@ -204,7 +215,6 @@ export default function UserManagement() {
                                             />
                                         </div>
                                     </div>
-
 
                                     {/* Tombol Aksi */}
                                     <div className="w-full flex flex-col gap-2 mt-2">

@@ -124,39 +124,39 @@ class UserController extends Controller implements HasMiddleware
         $user->assignRole('user');
     
         // 4. Sinkronisasi ke WordPress
-        // $exists = WordpressUser::where('user_email', $email)->orWhere('user_login', $nomorHp)->first();
+        $exists = WordpressUser::where('user_email', $email)->orWhere('user_login', $nomorHp)->first();
     
-        // if (!$exists) {
-        //     // Gunakan Phpass untuk hash password WordPress
-        //     $hasher = new PasswordHash(8, true);
-        //     $hashedPassword = $hasher->HashPassword($request->password);
+        if (!$exists) {
+            // Gunakan Phpass untuk hash password WordPress
+            $hasher = new PasswordHash(8, true);
+            $hashedPassword = $hasher->HashPassword($request->password);
             
-        //     $wpUser = WordpressUser::create([
-        //         'user_login'    => $nomorHp,
-        //         'user_pass'     => $hashedPassword,
-        //         'user_nicename' => Str::slug($request->name),
-        //         'user_email'    => $email,
-        //         'user_registered' => now(),
-        //         'user_status'   => 0,
-        //         'display_name'  => $request->name,
-        //     ]);
+            $wpUser = WordpressUser::create([
+                'user_login'    => $nomorHp,
+                'user_pass'     => $hashedPassword,
+                'user_nicename' => Str::slug($request->name),
+                'user_email'    => $email,
+                'user_registered' => now(),
+                'user_status'   => 0,
+                'display_name'  => $request->name,
+            ]);
             
-        //     // Tambahkan usermeta (capabilities & user level)
-        //     $prefix = env('WP_DB_PREFIX', 'wp_');
+            // Tambahkan usermeta (capabilities & user level)
+            $prefix = env('WP_DB_PREFIX', 'wp_');
     
-        //     DB::connection('wordpress')->table('usermeta')->insert([
-        //         [
-        //             'user_id'    => $wpUser->ID,
-        //             'meta_key'   => $prefix . 'capabilities',
-        //             'meta_value' => serialize(['subscriber' => true]),
-        //         ],
-        //         [
-        //             'user_id'    => $wpUser->ID,
-        //             'meta_key'   => $prefix . 'user_level',
-        //             'meta_value' => '0',
-        //         ]
-        //     ]);
-        // }
+            DB::connection('wordpress')->table('usermeta')->insert([
+                [
+                    'user_id'    => $wpUser->ID,
+                    'meta_key'   => $prefix . 'capabilities',
+                    'meta_value' => serialize(['subscriber' => true]),
+                ],
+                [
+                    'user_id'    => $wpUser->ID,
+                    'meta_key'   => $prefix . 'user_level',
+                    'meta_value' => '0',
+                ]
+            ]);
+        }
 
         // 5. Redirect ke halaman index
         return to_route('manage-users.index');
