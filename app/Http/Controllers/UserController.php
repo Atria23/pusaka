@@ -14,6 +14,9 @@ use App\Models\PengelolaAir;
 use Illuminate\Support\Facades\Hash; // <-- Tambahkan ini
 use Illuminate\Support\Str; // <-- Tambahkan ini
 use App\Models\WordpressUser; // <-- Tambahkan ini
+use Illuminate\Http\RedirectResponse; // <-- TAMBAHKAN ATAU PASTIKAN BARIS INI ADA
+
+use Illuminate\Http\Request;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -84,7 +87,7 @@ class UserController extends Controller implements HasMiddleware
 
     public function create()
     {
-        return Inertia::render('ManageUsers/Create', [
+        return inertia('ManageUserCreate', [
             'roles' => Role::all(),
             'pengelolaList' => PengelolaAir::all(),
         ]);
@@ -95,17 +98,6 @@ class UserController extends Controller implements HasMiddleware
      */
     public function store(Request $request): RedirectResponse
     {
-        // 1. Validasi Input
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|string|lowercase|email|max:255|unique:users,email',
-            'kontak' => 'required|string|max:20|unique:users,kontak',
-            'rt' => 'required|string|max:2',
-            'rw' => 'required|string|max:2',
-            'alamat' => 'required|string',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'pengelola_air_id' => 'nullable|exists:pengelola_air,id',
-        ]);
 
         // 2. Format Data Tambahan (RT, RW, Email)
         $rt = str_pad($request->rt, 2, '0', STR_PAD_LEFT);
@@ -132,42 +124,42 @@ class UserController extends Controller implements HasMiddleware
         $user->assignRole('user');
     
         // 4. Sinkronisasi ke WordPress
-        $exists = WordpressUser::where('user_email', $email)->orWhere('user_login', $nomorHp)->first();
+        // $exists = WordpressUser::where('user_email', $email)->orWhere('user_login', $nomorHp)->first();
     
-        if (!$exists) {
-            // Gunakan Phpass untuk hash password WordPress
-            $hasher = new PasswordHash(8, true);
-            $hashedPassword = $hasher->HashPassword($request->password);
+        // if (!$exists) {
+        //     // Gunakan Phpass untuk hash password WordPress
+        //     $hasher = new PasswordHash(8, true);
+        //     $hashedPassword = $hasher->HashPassword($request->password);
             
-            $wpUser = WordpressUser::create([
-                'user_login'    => $nomorHp,
-                'user_pass'     => $hashedPassword,
-                'user_nicename' => Str::slug($request->name),
-                'user_email'    => $email,
-                'user_registered' => now(),
-                'user_status'   => 0,
-                'display_name'  => $request->name,
-            ]);
+        //     $wpUser = WordpressUser::create([
+        //         'user_login'    => $nomorHp,
+        //         'user_pass'     => $hashedPassword,
+        //         'user_nicename' => Str::slug($request->name),
+        //         'user_email'    => $email,
+        //         'user_registered' => now(),
+        //         'user_status'   => 0,
+        //         'display_name'  => $request->name,
+        //     ]);
             
-            // Tambahkan usermeta (capabilities & user level)
-            $prefix = env('WP_DB_PREFIX', 'wp_');
+        //     // Tambahkan usermeta (capabilities & user level)
+        //     $prefix = env('WP_DB_PREFIX', 'wp_');
     
-            DB::connection('wordpress')->table('usermeta')->insert([
-                [
-                    'user_id'    => $wpUser->ID,
-                    'meta_key'   => $prefix . 'capabilities',
-                    'meta_value' => serialize(['subscriber' => true]),
-                ],
-                [
-                    'user_id'    => $wpUser->ID,
-                    'meta_key'   => $prefix . 'user_level',
-                    'meta_value' => '0',
-                ]
-            ]);
-        }
+        //     DB::connection('wordpress')->table('usermeta')->insert([
+        //         [
+        //             'user_id'    => $wpUser->ID,
+        //             'meta_key'   => $prefix . 'capabilities',
+        //             'meta_value' => serialize(['subscriber' => true]),
+        //         ],
+        //         [
+        //             'user_id'    => $wpUser->ID,
+        //             'meta_key'   => $prefix . 'user_level',
+        //             'meta_value' => '0',
+        //         ]
+        //     ]);
+        // }
 
         // 5. Redirect ke halaman index
-        return to_route('manage-users.index')->with('success', 'Pengguna baru berhasil dibuat dan disinkronkan.');
+        return to_route('manage-users.index');
     }
 
     /**
